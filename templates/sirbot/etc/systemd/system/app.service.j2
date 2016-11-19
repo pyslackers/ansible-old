@@ -1,0 +1,10 @@
+[Unit]
+Description=Job that runs sirbot
+
+[Service]
+ExecStart={{ pyapp_dest_dir }}/{{ pyapp_app_name }}/venv/bin/python3 {{ pyapp_dest_dir }}/{{ pyapp_app_name }}/example.py
+Type=simple
+User=root
+
+[Install]
+WantedBy=multi-user.target

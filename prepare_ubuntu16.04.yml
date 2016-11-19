@@ -1,0 +1,7 @@
+---
+- name: Prepare Ubuntu 16.0x with Python 2
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Install python2
+      raw: sudo apt-get -y install python-simplejson

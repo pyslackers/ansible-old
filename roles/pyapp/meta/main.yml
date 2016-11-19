@@ -1,0 +1,7 @@
+---
+allow_duplicates: yes
+dependencies:
+  - role: pylocal
+    pylocal_source_dir: "{{ pyapp_source_dir }}"
+    pylocal_dest_archive_dir: "{{ pyapp_dest_archive_dir }}"
+    pylocal_venv: "{{ pyapp_local_venv }}"
