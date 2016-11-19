@@ -38,11 +38,11 @@
   register: apt_key_change
   changed_when: apt_key_list.stdout != apt_key_change.stdout
 
-
 - name: Upgrade apt
   apt:
     upgrade: yes
     update_cache: yes
+    cache_valid_time: "{{ apt_cache_valid_time }}"
 
 - name: Install packages
   apt:

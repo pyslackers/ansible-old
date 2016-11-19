@@ -1,0 +1,12 @@
+---
+- name: Install ntp
+  apt:
+    name: ntp
+    state: latest
+
+- name: Copy the ntp.conf file
+  template:
+    src: etc/ntp.conf.j2
+    dest: /etc/ntp.conf
+  notify:
+    - Restart ntp

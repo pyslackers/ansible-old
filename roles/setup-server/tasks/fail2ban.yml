@@ -1,0 +1,25 @@
+---
+- name: Install fail2ban
+  apt:
+    pkg: fail2ban
+    state: latest
+    update_cache: true
+    cache_valid_time: "{{ apt_cache_valid_time }}"
+  notify:
+    - restart fail2ban
+
+- name: Configure fail2ban
+  template:
+    src: "{{ item }}.j2"
+    dest: "/{{ item }}"
+  with_items:
+    - etc/fail2ban/jail.local
+    - etc/fail2ban/fail2ban.local
+  notify:
+    - restart fail2ban
+
+- name: Start fail2ban
+  service:
+    name: fail2ban
+    state: started
+    enabled: yes

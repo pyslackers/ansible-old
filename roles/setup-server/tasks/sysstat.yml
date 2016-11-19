@@ -1,0 +1,21 @@
+---
+
+- name: Install sysstat
+  apt:
+    pkg: sysstat
+    state: latest
+
+- name: Copy sysstat cron file
+  template:
+    src: etc/cron.d/sysstat.cron.j2
+    dest: /etc/cron.d/sysstat
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable sysstat logging
+  template:
+    src: etc/default/sysstat.j2
+    dest: /etc/default/sysstat
+  notify:
+    - restart sysstat

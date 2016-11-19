@@ -2,13 +2,7 @@
 - name: Configure and deploy sir-bot-a-lot
   hosts: sirbot
   roles:
-    - role: common
-      tags: configuration
-    - role: ntp
-      tags: configuration
-    - role: fail2ban
-      tags: configuration
-    - role: sysstat
+    - role: setup-server
       tags: configuration
     - role: pyapp
       pyapp_source_dir: '{{source_root}}/sir-bot-a-lot'
