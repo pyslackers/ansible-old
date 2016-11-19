@@ -1,3 +1,5 @@
 ---
-- name: set hostname
-  shell: /bin/hostname -F /etc/hostname
+- name: Restart cron
+  service:
+    name: cron.service
+    state: restarted
