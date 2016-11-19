@@ -5,6 +5,7 @@
 ansible_ssh_host=45.55.218.44
 ansible_ssh_port=22
 ansible_ssh_user=root
+apt_cache_valid_time: 86400
 
 [secrets:children]
 sirbot
