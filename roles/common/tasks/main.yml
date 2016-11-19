@@ -1,41 +1,54 @@
 ---
 - name: Set hostname
   hostname:
-    name={{ hostname_override }}
+    name: "{{ hostname_override }}"
   when: hostname_override is defined
 
 - name: Set timezone to UTC
-  shell:
-    echo Etc/UTC > /etc/timezone
+  timezone:
+    name: Etc/UTC
+  notify:
+    - Restart cron
 
 # May change due to https://github.com/ansible/ansible-modules-core/issues/3523
 - name: Install aptitude
   apt:
-    pkg=aptitude
+    pkg: aptitude
 
+# Not sure if needed
 - name: Set localtime to UTC
   file:
-    src=/usr/share/zoneinfo/Etc/UTC
-    dest=/etc/localtime
+    src: /usr/share/zoneinfo/Etc/UTC
+    dest: /etc/localtime
+  notify:
+    - Restart cron
 
-- name: Reconfigure tzdata
-  command:
-    dpkg-reconfigure -f noninteractive tzdata
+- name: List apt keys
+  command: apt-key list
+  changed_when: False
+  register: apt_key_list
 
 - name: Update apt keys
-  command:
-    apt-key update
+  command: apt-key update
+  changed_when: False
+  register: apt_key_update
+
+- name: Change of apt-key
+  command: apt-key list
+  register: apt_key_change
+  changed_when: apt_key_list.stdout != apt_key_change.stdout
+
 
 - name: Upgrade apt
   apt:
-    upgrade=yes
-    update_cache=yes
+    upgrade: yes
+    update_cache: yes
 
 - name: Install packages
   apt:
-    pkg={{ item }}
-    state=installed
-    force=yes
+    pkg: "{{ item }}"
+    state: latest
+    force: yes
   with_items:
     - ubuntu-keyring
     - build-essential
