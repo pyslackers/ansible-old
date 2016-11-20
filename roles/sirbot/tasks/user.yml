@@ -4,7 +4,7 @@
   become: true
   user:
     name: sirbot
-    shell: /bin/bash'
+    shell: /bin/bash
 
 - name: Home exist
   stat:

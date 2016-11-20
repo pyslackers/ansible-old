@@ -4,7 +4,7 @@ Description=Job that runs sirbot
 [Service]
 ExecStart=/usr/share/python/sirbot/bin/python3.5 /home/sirbot/example.py
 Type=simple
-User=root
+User=sirbot
 Environment=SIRBOT_TOKEN={{ sirbot_token }}
 Environment=BOT_NAME={{ sirbot_name }}
 Environment=BOT_ID={{ sirbot_id }}

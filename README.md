@@ -67,3 +67,32 @@ To run this playbook the host must be in the `sirbot` group.
 * `force_build`: Force the build of a new package
 * `local_deb`: Path to the local `sirbot.deb` file to deploy
 * `local_example`: Path to the local `example.py` file to deploy
+
+#### How to create a `sirbot.deb` file
+
+1. Install the `debhelper` and `dh-virtualenv` packages
+
+        $ apt-get install debhelper dh-virtualenv
+
+2. Install the `make-deb` python module
+
+        $ pip install make-deb
+    
+3. Configure the package
+
+        $ make-deb
+    
+4. Build the package
+
+    > Make sure the package is being build with minimum a python3.5 executable
+
+        $ export VIRTUALENV_PYTHON=/usr/bin/python3.5 
+        $ dpkg-buildpackage -us -uc
+        
+5. (Optional) Install the package
+
+        $ dpkg -i sirbot_<version>_amd64.deb
+    
+    
+    
+
