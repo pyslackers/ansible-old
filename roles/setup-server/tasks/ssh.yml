@@ -1,0 +1,18 @@
+- name: Create .ssh directory
+  file:
+    path: /root/.ssh
+    state: directory
+
+- name: Set authorized keys
+  copy:
+    src: "{{ ssh_keys  }}"
+    dest: /root/.ssh/authorized_keys
+    owner: root
+    mode: 0600
+
+- name: Ssh configuration
+  template:
+    src: etc/ssh/sshd_config
+    dest: /etc/ssh/sshd_config
+  notify:
+    - Restart ssh

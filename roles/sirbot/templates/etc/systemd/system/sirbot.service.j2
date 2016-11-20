@@ -1,0 +1,15 @@
+[Unit]
+Description=Job that runs sirbot
+
+[Service]
+ExecStart=/usr/share/python/sirbot/bin/python3.5 /home/sirbot/example.py
+Type=simple
+User=root
+Environment=SIRBOT_TOKEN={{ sirbot_token }}
+Environment=BOT_NAME={{ sirbot_name }}
+Environment=BOT_ID={{ sirbot_id }}
+Environment=PORT={{ port }}
+
+[Install]
+WantedBy=multi-user.target
+

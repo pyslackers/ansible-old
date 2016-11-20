@@ -1,0 +1,11 @@
+---
+
+- name: Install necessary packages
+  become: true
+  apt:
+    name: '{{ item }}'
+    state: latest
+  with_items:
+    - git
+    - dh-virtualenv
+    - debhelper

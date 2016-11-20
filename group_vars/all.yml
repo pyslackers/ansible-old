@@ -1,4 +1,3 @@
 ---
 apt_cache_valid_time: 86400
-source_root: "{{ inventory_dir }}/../../.."
-venv_root: "{{ '~/.environments' | expanduser }}"
+

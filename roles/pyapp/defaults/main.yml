@@ -1,4 +1,0 @@
----
-pyapp_source_dir: ../app
-pyapp_dest_dir: /var/www
-pyapp_dest_archive_dir: /var/src

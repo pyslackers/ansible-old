@@ -4,3 +4,4 @@
 - include: fail2ban.yml
 - include: ntp.yml
 - include: sysstat.yml
+- include: ssh.yml

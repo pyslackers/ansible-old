@@ -1,19 +1,30 @@
 ---
-- name: Set environment variables
-  blockinfile:
-    dest: "{{ pyapp_dest_dir }}/{{ pyapp_app_name }}/venv/bin/activate"
-    block: |
-      export BOT_NAME={{ sirbot_name }}
-      export PORT=8080
-      export SIRBOT_TOKEN={{ sirbot_token }}
-  when: sirbot_token is defined
+- include: user.yml
+  tags:
+    - deploy
+    - user
 
-- name: install sirbot systemd config
-  template:
-    src: "{{ template_root }}/etc/systemd/system/app.service.j2"
-    dest: "/etc/systemd/system/{{ pyapp_app_name }}.service"
+- include: packages.yml
+  tags:
+    - deploy
+    - packages
 
-- name: install sirbot systemd config
-  template:
-    src: "{{ template_root }}/etc/nginx/sites-available/app.conf.j2"
-    dest: "/etc/nginx/sites-available/{{ nginx_app_name }}.conf"
+- include: git.yml
+  tags:
+    - deploy
+    - git
+
+- include: build.yml
+  tags:
+    - deploy
+    - build
+
+- include: build_local.yml
+  tags:
+    - deploy
+    - build_local
+
+- include: configuration.yml
+  tags:
+    - deploy
+    - configuration
