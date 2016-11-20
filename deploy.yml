@@ -1,11 +1,8 @@
 ---
-- name: Configure and deploy sir-bot-a-lot
+- name: Configure and deploy pythondev apps
   hosts: sirbot
   roles:
     - role: setup-server
       tags: setup-server
     - role: sirbot
       tags: sirbot
-  vars:
-    - include:
-
