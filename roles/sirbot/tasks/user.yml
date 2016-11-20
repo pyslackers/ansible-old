@@ -1,0 +1,13 @@
+---
+
+- name: Create sirbot user
+  become: true
+  user:
+    name: sirbot
+    shell: /bin/bash'
+
+- name: Home exist
+  stat:
+    path: /home/sirbot
+  register: user_exist
+  failed_when: not user_exist.stat.exists

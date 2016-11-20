@@ -3,18 +3,9 @@
   hosts: sirbot
   roles:
     - role: setup-server
-      tags: configuration
-    - role: pyapp
-      pyapp_source_dir: '{{source_root}}/sir-bot-a-lot'
-      pyapp_dest_archive_dir: '/var/src'
-      pyapp_local_venv: '{{ venv_root | expanduser}}/sirbot'
-      python_version: python3.5
-    - role: nginx
-      tags: configuration
+      tags: setup-server
     - role: sirbot
-      template_root: sirbot
-      nginx_app_name: sirbot
-  tasks:
-    - include: tasks/nginx.yml
-      template_root: sirbot
-      nginx_app_name: sirbot
+      tags: sirbot
+  vars:
+    - include:
+

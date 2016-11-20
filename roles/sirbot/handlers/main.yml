@@ -1,0 +1,7 @@
+---
+
+- name: Restart sirbot
+  service:
+    name: sirbot.service
+    daemon_reload: yes
+    state: restarted

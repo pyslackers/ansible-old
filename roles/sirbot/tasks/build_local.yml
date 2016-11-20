@@ -1,0 +1,26 @@
+---
+
+- name: Copy package
+  become: true
+  copy:
+    src: "{{ local_deb }}"
+    dest: /home/sirbot/sirbot.deb
+  when:
+    - local_deb is defined
+
+- name: Install local package
+  become: true
+  shell: dpkg -i sirbot.deb
+  args:
+    chdir: /home/sirbot
+  notify:
+    - Restart sirbot
+  when:
+    - local_deb is defined
+
+- name: Copy example.py
+  copy:
+    src: "{{ local_example }}"
+    dest: /home/sirbot/example.py
+  when:
+    - local_example is defined

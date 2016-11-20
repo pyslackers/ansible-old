@@ -18,3 +18,8 @@
   tags:
     - server-setup
     - sysstat
+
+- include: ssh.yml
+  tags:
+    - server-setup
+    - ssh
