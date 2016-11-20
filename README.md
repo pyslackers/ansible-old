@@ -7,49 +7,63 @@ Interested in becoming a member? Get your invite here: http://pythondevelopers.h
 
 ## Get Started
 
-**There are some assumptions that are made you should be aware of before using this project.**
-    
-- In the root of your home directory you should have a folder named `.environments` that all your virtual environments are located.
-- This project is in the same folder as the application you are trying to deploy.
-- If you need to change any of these things you need to alter the variables in `pythondev-ansible/group_vars/all.yml`
-
-### Prepare the Ansible deployment
-
-1. Create a virtualenv and install the requirements.
-
-    $ pip install -r requirements.txt
-
-
 ### Prepare Ubuntu Server 16.04
 
-> Note: 
-    The following is for deploying to Ubuntu Server 16.04 which does not have Python 2 installed
+> The following is for deploying to Ubuntu Server 16.04 which does not have Python 2 installed
 
 Install Python 2 on the server using the raw command
 
-    $ ansible <host_pattern> -i environments/<app-name>/<env> -m raw -a "apt-get install -y python-simplejson"
+    $ ansible <host_pattern> -i <inventory> -m raw -a "apt-get install -y python-simplejson"
     
 **Example:**
     
-    ansible sirbot -i environments/sirbot/prod -m raw -a "apt-get install -y python-simplejson"
+    $ ansible sirbot -i <inventory> -m raw -a "apt-get install -y python-simplejson"
     
 -OR-
 
-Run the the `prepare_ubuntu16.04` playbook for the server
+Run the `prepare_ubuntu16.04` playbook for the server
 
-    $ ansible-playbook -i environments/<app>/<env> prepare_ubuntu16.04.yml`
+    $ ansible-playbook -i <inventory> prepare_ubuntu16.04.yml
 
+### Provisioning
+
+> The following is for securing your server. If you are deploying the app on a new server.
+    
+    $ ansible-playbook -i <inventory> provisioning.yml
 
 ### Run the deployment for the specific app you want to deploy
 
-> Note:
-    You will need to already have your ssh keys included in our provisioning tasks.
-    If you do not then you will need to have an admin run the `secure_server.yml` playbook.
+> You will need to already have your ssh keys included in our provisioning tasks.
+  If you do not then you will need to have an admin run the `provisioning.yml` playbook.
 
-Run the full deployment.
+> Before deploying a new app read the app configuration section
 
-    $ ansible-playbook -i environments/sirbot/prod sirbot.yml --ask-vault-pass
+Run the deployment.
 
-If you have done a full deployment and only want to deploy the app you can add the `--skip-tags configuration` option
+    $ ansible-playbook -i <inventory> deploy.yml --tags <app>
 
-    $ ansible-playbook -i environments/sirbot/prod sirbot.yml --skip-tags configuration
+## Configuration
+
+### Provisioning
+
+#### Required variables
+
+* `ssh_keys`: Path to your ssh authorized_keys file
+    
+### Sirbot
+
+To run this playbook the host must be in the `sirbot` group.
+
+#### Required variables
+
+* `sirbot_token`: Your slack token
+* `sirbot_name`: Name of the bot
+* `sirbot_id`: ID of the bot
+
+#### Optionnal variables:
+
+* `port`: Port for sirbot. Default is 8080
+
+* `force_build`: Force the build of a new package
+* `local_deb`: Path to the local `sirbot.deb` file to deploy
+* `local_example`: Path to the local `example.py` file to deploy
