@@ -1,10 +1,15 @@
+# {{ ansible_managed }}
+
 [Unit]
-Description=Job that runs sirbot
+Description=Sir-bot-a-lot
 
 [Service]
 ExecStart=/usr/share/python/sirbot/bin/python3.5 /home/sirbot/example.py
 Type=simple
 User=sirbot
+Restart=always
+RestartSec=1
+
 Environment=SIRBOT_TOKEN={{ sirbot_token }}
 Environment=BOT_NAME={{ sirbot_name }}
 Environment=BOT_ID={{ sirbot_id }}
