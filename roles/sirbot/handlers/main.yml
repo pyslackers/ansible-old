@@ -5,3 +5,8 @@
     name: sirbot.service
     daemon_reload: yes
     state: restarted
+
+- name: Reload systemd dameon
+  systemd:
+    name: sirbot.service
+    daemon_reload: yes

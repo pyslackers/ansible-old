@@ -7,3 +7,10 @@
     dest: /etc/systemd/system/sirbot.service
   notify:
     - Restart sirbot
+    - Reload systemd dameon
+
+- name: Start sirbot on boot
+  become: true
+  systemd:
+    name: sirbot.service
+    enabled: yes

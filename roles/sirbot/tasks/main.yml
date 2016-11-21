@@ -24,7 +24,7 @@
     - deploy
     - build_local
 
-- include: configuration.yml
+- include: systemd.yml
   tags:
     - deploy
-    - configuration
+    - systemd.yml
