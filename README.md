@@ -66,7 +66,7 @@ To run this playbook the host must be in the `sirbot` group.
 
 * `force_build`: Force the build of a new package
 * `local_deb`: Path to the local `sirbot.deb` file to deploy
-* `local_example`: Path to the local `example.py` file to deploy
+* `local_run`: Path to the local `run.py` file to deploy
 
 #### How to create a `sirbot.deb` file
 

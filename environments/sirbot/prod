@@ -1,8 +1,8 @@
 [sirbot]
-95.85.51.185
+45.55.169.185
 
 [sirbot:vars]
-ansible_ssh_host=95.85.51.185
+ansible_ssh_host=45.55.169.185
 ansible_ssh_port=22
 ansible_ssh_user=root
 

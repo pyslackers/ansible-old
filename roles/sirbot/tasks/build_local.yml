@@ -18,9 +18,9 @@
   when:
     - local_deb is defined
 
-- name: Copy example.py
+- name: Copy run.py
   copy:
-    src: "{{ local_example }}"
-    dest: /home/sirbot/example.py
+    src: "{{ local_run }}"
+    dest: /home/sirbot/run.py
   when:
-    - local_example is defined
+    - local_run is defined
