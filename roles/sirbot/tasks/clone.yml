@@ -1,0 +1,40 @@
+---
+
+- name: Clone core repo
+  become: true
+  become_user: sirbot
+  git:
+    accept_hostkey: yes
+    force: yes
+    clone: yes
+    repo: https://gitlab.com/PythonDevCommunity/sir-bot-a-lot.git
+    version: master
+    dest: /home/sirbot/sir-bot-a-lot
+  notify:
+    - Restart sirbot
+
+- name: Clone plugin-slack repo
+  become: true
+  become_user: sirbot
+  git:
+    accept_hostkey: yes
+    force: yes
+    clone: yes
+    repo: https://gitlab.com/PythonDevCommunity/sirbot-plugin-slack.git
+    version: master
+    dest: /home/sirbot/sirbot-plugin-slack
+  notify:
+    - Restart sirbot
+
+- name: Clone plugin-pythondev repo
+  become: true
+  become_user: sirbot
+  git:
+    accept_hostkey: yes
+    force: yes
+    clone: yes
+    repo: https://gitlab.com/PythonDevCommunity/sirbot-plugin-pythondev.git
+    version: master
+    dest: /home/sirbot/sirbot-plugin-pythondev
+  notify:
+    - Restart sirbot

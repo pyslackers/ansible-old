@@ -1,0 +1,50 @@
+---
+
+- name: Install pip
+  pip:
+    name: pip
+    version: 9.0.1
+    virtualenv: /home/sirbot/.pyvenv
+    virtualenv_command: /usr/bin/pyvenv
+
+- name: Install core requirements
+  pip:
+    requirements: /home/sirbot/sir-bot-a-lot/requirements.txt
+    virtualenv: /home/sirbot/.pyvenv
+  notify:
+    - Restart sirbot
+
+- name: Install core
+  pip:
+    name: /home/sirbot/sir-bot-a-lot/
+    virtualenv: /home/sirbot/.pyvenv
+  notify:
+    - Restart sirbot
+
+- name: Install plugin-slack requirements
+  pip:
+    requirements: /home/sirbot/sirbot-plugin-slack/requirements.txt
+    virtualenv: /home/sirbot/.pyvenv
+  notify:
+    - Restart sirbot
+
+- name: Install plugin-slack
+  pip:
+    name: /home/sirbot/sirbot-plugin-slack/
+    virtualenv: /home/sirbot/.pyvenv
+  notify:
+    - Restart sirbot
+
+- name: Install plugin-pythondev requirements
+  pip:
+    requirements: /home/sirbot/sirbot-plugin-pythondev/requirements.txt
+    virtualenv: /home/sirbot/.pyvenv
+  notify:
+    - Restart sirbot
+
+- name: Install plugin-pythondev
+  pip:
+    name: /home/sirbot/sirbot-plugin-pythondev/
+    virtualenv: /home/sirbot/.pyvenv
+  notify:
+    - Restart sirbot

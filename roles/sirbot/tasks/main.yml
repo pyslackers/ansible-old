@@ -9,22 +9,17 @@
     - deploy
     - packages
 
-- include: git.yml
+- include: clone.yml
   tags:
     - deploy
     - git
 
-- include: build.yml
+- include: environment.yml
   tags:
     - deploy
-    - build
-
-- include: build_local.yml
-  tags:
-    - deploy
-    - build_local
+    - environment
 
 - include: systemd.yml
   tags:
     - deploy
-    - systemd.yml
+    - systemd

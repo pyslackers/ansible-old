@@ -6,8 +6,9 @@
     name: sirbot
     shell: /bin/bash
 
-- name: Home exist
-  stat:
+- name: Create /home/sirbot
+  become: true
+  file:
     path: /home/sirbot
-  register: user_exist
-  failed_when: not user_exist.stat.exists
+    state: directory
+    mode: 0755

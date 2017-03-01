@@ -1,0 +1,5 @@
+[sirbot]
+pythondev-01
+
+[secrets:children]
+sirbot

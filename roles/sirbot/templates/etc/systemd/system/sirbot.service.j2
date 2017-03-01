@@ -4,15 +4,13 @@
 Description=Sir-bot-a-lot
 
 [Service]
-ExecStart=/usr/share/python/sirbot/bin/python3.5 /home/sirbot/run.py
+ExecStart=/home/sirbot/.pyvenv/bin/sirbot -c /home/sirbot/sirbot-plugin-pythondev/sirbot.yml
 Type=simple
 User=sirbot
 Restart=always
 RestartSec=1
 
-Environment=SIRBOT_TOKEN={{ sirbot_token }}
-Environment=BOT_NAME={{ sirbot_name }}
-Environment=BOT_ID={{ sirbot_id }}
+Environment=SIRBOT_SLACK_TOKEN={{ sirbot_token }}
 Environment=PORT={{ port }}
 
 [Install]
