@@ -10,6 +10,7 @@
     repo: https://gitlab.com/PythonDevCommunity/sir-bot-a-lot.git
     version: master
     dest: /home/sirbot/sir-bot-a-lot
+  register: core
   notify:
     - Restart sirbot
 
@@ -23,6 +24,7 @@
     repo: https://gitlab.com/PythonDevCommunity/sirbot-plugin-slack.git
     version: master
     dest: /home/sirbot/sirbot-plugin-slack
+  register: plugin_slack
   notify:
     - Restart sirbot
 
@@ -36,5 +38,6 @@
     repo: https://gitlab.com/PythonDevCommunity/sirbot-plugin-pythondev.git
     version: master
     dest: /home/sirbot/sirbot-plugin-pythondev
+  register: plugin_pythondev
   notify:
     - Restart sirbot
