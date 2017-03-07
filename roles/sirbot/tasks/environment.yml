@@ -19,7 +19,25 @@
     name: /home/sirbot/sir-bot-a-lot/
     virtualenv: /home/sirbot/.pyvenv
     editable: True
+    state: forcereinstall
   when: core.changed
+  notify:
+    - Restart sirbot
+
+- name: Install plugin requirements
+  pip:
+    requirements: /home/sirbot/sirbot-plugin/requirements.txt
+    virtualenv: /home/sirbot/.pyvenv
+  notify:
+    - Restart sirbot
+
+- name: Install plugin
+  pip:
+    name: /home/sirbot/sirbot-plugin/
+    virtualenv: /home/sirbot/.pyvenv
+    editable: True
+    state: forcereinstall
+  when: plugin.changed
   notify:
     - Restart sirbot
 
@@ -35,6 +53,7 @@
     name: /home/sirbot/sirbot-plugin-slack/
     virtualenv: /home/sirbot/.pyvenv
     editable: True
+    state: forcereinstall
   when: plugin_slack.changed
   notify:
     - Restart sirbot
@@ -51,6 +70,7 @@
     name: /home/sirbot/sirbot-plugin-pythondev/
     virtualenv: /home/sirbot/.pyvenv
     editable: True
+    state: forcereinstall
   when: plugin_pythondev.changed
   notify:
     - Restart sirbot

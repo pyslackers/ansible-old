@@ -14,6 +14,20 @@
   notify:
     - Restart sirbot
 
+- name: Clone plugin repo
+  become: true
+  become_user: sirbot
+  git:
+    accept_hostkey: yes
+    force: yes
+    clone: yes
+    repo: https://gitlab.com/PythonDevCommunity/sirbot-plugin.git
+    version: master
+    dest: /home/sirbot/sirbot-plugin
+  register: plugin
+  notify:
+    - Restart sirbot
+
 - name: Clone plugin-slack repo
   become: true
   become_user: sirbot
