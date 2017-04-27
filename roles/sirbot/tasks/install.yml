@@ -1,75 +1,80 @@
 ---
 
-- name: Install pip
-  pip:
-    name: pip
-    version: 9.0.1
-    virtualenv: /home/sirbot/.pyvenv
-    virtualenv_command: /usr/bin/pyvenv
-
 - name: Install core requirements
+  become: true
+  become_user: sirbot
   pip:
     requirements: /home/sirbot/sir-bot-a-lot/requirements.txt
-    virtualenv: /home/sirbot/.pyvenv
+    executable: /home/sirbot/.pyvenv/bin/pip
   notify:
     - Restart sirbot
 
 - name: Install core
+  become: true
+  become_user: sirbot
   pip:
     name: /home/sirbot/sir-bot-a-lot/
-    virtualenv: /home/sirbot/.pyvenv
-    editable: True
+    executable: /home/sirbot/.pyvenv/bin/pip
     state: forcereinstall
   when: core.changed
   notify:
     - Restart sirbot
 
 - name: Install plugin requirements
+  become: true
+  become_user: sirbot
   pip:
     requirements: /home/sirbot/sirbot-plugin/requirements.txt
-    virtualenv: /home/sirbot/.pyvenv
+    executable: /home/sirbot/.pyvenv/bin/pip
   notify:
     - Restart sirbot
 
 - name: Install plugin
+  become: true
+  become_user: sirbot
   pip:
     name: /home/sirbot/sirbot-plugin/
-    virtualenv: /home/sirbot/.pyvenv
-    editable: True
+    executable: /home/sirbot/.pyvenv/bin/pip
     state: forcereinstall
   when: plugin.changed
   notify:
     - Restart sirbot
 
 - name: Install plugin-slack requirements
+  become: true
+  become_user: sirbot
   pip:
     requirements: /home/sirbot/sirbot-plugin-slack/requirements.txt
-    virtualenv: /home/sirbot/.pyvenv
+    executable: /home/sirbot/.pyvenv/bin/pip
   notify:
     - Restart sirbot
 
 - name: Install plugin-slack
+  become: true
+  become_user: sirbot
   pip:
     name: /home/sirbot/sirbot-plugin-slack/
-    virtualenv: /home/sirbot/.pyvenv
-    editable: True
+    executable: /home/sirbot/.pyvenv/bin/pip
     state: forcereinstall
   when: plugin_slack.changed
   notify:
     - Restart sirbot
 
 - name: Install plugin-pythondev requirements
+  become: true
+  become_user: sirbot
   pip:
     requirements: /home/sirbot/sirbot-plugin-pythondev/requirements.txt
-    virtualenv: /home/sirbot/.pyvenv
+    executable: /home/sirbot/.pyvenv/bin/pip
   notify:
     - Restart sirbot
 
 - name: Install plugin-pythondev
+  become: true
+  become_user: sirbot
   pip:
     name: /home/sirbot/sirbot-plugin-pythondev/
-    virtualenv: /home/sirbot/.pyvenv
-    editable: True
+    executable: /home/sirbot/.pyvenv/bin/pip
     state: forcereinstall
   when: plugin_pythondev.changed
   notify:
