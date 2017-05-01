@@ -10,8 +10,10 @@ User=sirbot
 Restart=always
 RestartSec=1
 
-Environment=SIRBOT_SLACK_TOKEN={{ sirbot_token }}
-Environment=SIRBOT_PORT={{ port }}
+Environment=SIRBOT_SLACK_BOT_TOKEN={{ SIRBOT_SLACK_BOT_TOKEN }}
+Environment=SIRBOT_SLACK_TOKEN={{ SIRBOT_SLACK_TOKEN }}
+Environment=SIRBOT_SLACK_VERIFICATION_TOKEN={{ SIRBOT_SLACK_VERIFICATION_TOKEN }}
+Environment=SIRBOT_PORT={{ sirbot_port }}
 
 [Install]
 WantedBy=multi-user.target

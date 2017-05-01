@@ -1,0 +1,24 @@
+---
+
+- name: Download Pythonz
+  git:
+    force: no
+    repo: https://github.com/saghul/pythonz.git
+    dest: /usr/src/pythonz
+    version: c3fcfa8876eda7fcafe55ae244d6884a4d540aeb
+  register: new_pythonz_release
+
+- name: Install pythonz
+  command: /usr/bin/python /usr/src/pythonz/pythonz_install.py --systemwide
+  args:
+    chdir: /usr/local
+    creates: /usr/local/pythonz
+  register: install_pythonz
+
+- name: Upgrade pythonz
+  command: /usr/bin/python /usr/src/pythonz/pythonz_install.py --upgrade --systemwide
+  args:
+    chdir: /usr/local
+  when:
+    - new_pythonz_release|changed
+    - install_pythonz|skipped
