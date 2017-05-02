@@ -5,8 +5,8 @@
 
 - name: Set authorized keys
   template:
-    src: roles/setup-server/templates/ssh/{{ inventory_hostname }}/authorized_keys.j2
-    dest: /root/.ssh/authorized_keys.j2
+    src: templates/ssh/{{ inventory_hostname }}/authorized_keys.j2
+    dest: /root/.ssh/authorized_keys
     owner: root
     mode: 0600
 
