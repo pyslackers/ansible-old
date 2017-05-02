@@ -4,24 +4,14 @@
     name: "{{ hostname_override }}"
   when: hostname_override is defined
 
-- name: Set timezone to UTC
-  timezone:
-    name: Etc/UTC
-  notify:
-    - Restart cron
+- name: Add certbot PPA
+  apt_repository:
+    repo: 'ppa:certbot/certbot'
 
 # May change due to https://github.com/ansible/ansible-modules-core/issues/3523
 - name: Install aptitude
   apt:
     pkg: aptitude
-
-# Not sure if needed
-- name: Set localtime to UTC
-  file:
-    src: /usr/share/zoneinfo/Etc/UTC
-    dest: /etc/localtime
-  notify:
-    - Restart cron
 
 - name: List apt keys
   command: apt-key list
@@ -54,3 +44,32 @@
     - build-essential
     - curl
     - libicu-dev
+    - tzdata
+    - git
+    - nginx
+    - zlib1g-dev
+    - libbz2-dev
+    - libreadline-dev
+    - libncurses5-dev
+    - libsqlite3-dev
+    - libgdbm-dev
+    - libdb-dev
+    - libexpat1-dev
+    - libpcap-dev
+    - liblzma-dev
+    - libpcre3-dev
+    - libssl-dev
+
+- name: Set timezone to UTC
+  timezone:
+    name: Etc/UTC
+  notify:
+    - Restart cron
+
+# Not sure if needed
+- name: Set localtime to UTC
+  file:
+    src: /usr/share/zoneinfo/Etc/UTC
+    dest: /etc/localtime
+  notify:
+    - Restart cron

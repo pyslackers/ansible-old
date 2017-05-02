@@ -3,3 +3,4 @@
   service:
     name: ntp.service
     state: restarted
+  when: systemd_enabled == true
