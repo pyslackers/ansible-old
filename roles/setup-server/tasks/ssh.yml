@@ -1,9 +1,9 @@
-- name: Create .ssh directory
+- name: Create /root/.ssh directory
   file:
     path: /root/.ssh
     state: directory
 
-- name: Create .ssh directory
+- name: Create /etc/ssh directory
   file:
     path: /etc/ssh
     state: directory

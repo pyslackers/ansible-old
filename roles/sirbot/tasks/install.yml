@@ -16,7 +16,7 @@
     name: /home/sirbot/sir-bot-a-lot/
     executable: /home/sirbot/.pyvenv/bin/pip
     state: forcereinstall
-  when: core.changed
+  when: sirbot_clone_core.changed
   notify:
     - Restart sirbot
 
@@ -36,7 +36,7 @@
     name: /home/sirbot/sirbot-plugin/
     executable: /home/sirbot/.pyvenv/bin/pip
     state: forcereinstall
-  when: plugin.changed
+  when: sirbot_clone_plugin.changed
   notify:
     - Restart sirbot
 
@@ -56,7 +56,7 @@
     name: /home/sirbot/sirbot-plugin-slack/
     executable: /home/sirbot/.pyvenv/bin/pip
     state: forcereinstall
-  when: plugin_slack.changed
+  when: sirbot_clone_plugin_slack.changed
   notify:
     - Restart sirbot
 
@@ -76,6 +76,6 @@
     name: /home/sirbot/sirbot-plugin-pythondev/
     executable: /home/sirbot/.pyvenv/bin/pip
     state: forcereinstall
-  when: plugin_pythondev.changed
+  when: sirbot_clone_plugin_pythondev.changed
   notify:
     - Restart sirbot

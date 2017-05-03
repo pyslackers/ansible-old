@@ -11,7 +11,7 @@
     dest: /home/sirbot/sir-bot-a-lot
     force: yes
     remote: origin
-  register: core
+  register: sirbot_clone_core
   notify:
     - Restart sirbot
 
@@ -25,7 +25,7 @@
     repo: https://gitlab.com/PythonDevCommunity/sirbot-plugin.git
     version: master
     dest: /home/sirbot/sirbot-plugin
-  register: plugin
+  register: sirbot_clone_plugin
   notify:
     - Restart sirbot
 
@@ -39,7 +39,7 @@
     repo: https://gitlab.com/PythonDevCommunity/sirbot-plugin-slack.git
     version: master
     dest: /home/sirbot/sirbot-plugin-slack
-  register: plugin_slack
+  register: sirbot_clone_plugin_slack
   notify:
     - Restart sirbot
 
@@ -53,6 +53,6 @@
     repo: https://gitlab.com/PythonDevCommunity/sirbot-plugin-pythondev.git
     version: master
     dest: /home/sirbot/sirbot-plugin-pythondev
-  register: plugin_pythondev
+  register: sirbot_clone_plugin_pythondev
   notify:
     - Restart sirbot

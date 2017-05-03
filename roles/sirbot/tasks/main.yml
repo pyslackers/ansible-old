@@ -89,6 +89,8 @@
   become: true
   become_user: sirbot
   command: /home/sirbot/.pyvenv/bin/sirbot -c /home/sirbot/sirbot-plugin-pythondev/sirbot.yml --update
-  when: sirbot_db.stat.exists
+  when:
+    - sirbot_db.stat.exists
+    - sirbot_clone_core.changed or sirbot_clone_plugin.changed or sirbot_clone_plugin_slack.changed or sirbot_clone_plugin_pythondev.changed
   notify:
     - Restart sirbot
