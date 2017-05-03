@@ -3,3 +3,4 @@
   service:
     name: fail2ban.service
     state: restarted
+  when: systemd_enabled == true

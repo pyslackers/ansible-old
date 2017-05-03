@@ -3,6 +3,11 @@
     path: /root/.ssh
     state: directory
 
+- name: Create .ssh directory
+  file:
+    path: /etc/ssh
+    state: directory
+
 - name: Set authorized keys
   template:
     src: templates/ssh/{{ inventory_hostname }}/authorized_keys.j2

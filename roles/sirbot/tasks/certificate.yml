@@ -13,7 +13,7 @@
 
 - name: Generate certificate
   command: "/usr/bin/certbot certonly --standalone -d {{ sirbot_domain }} -m {{ email }} -n --agree-tos"
-  when: sirbot_certificate.stat.isdir is not defined
+  when: sirbot_certificate.stat.isdir is not defined and letsencrypt_run == true
 
 - name: Start nginx
   service:

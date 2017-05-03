@@ -3,3 +3,4 @@
   service:
     name: cron.service
     state: restarted
+  when: systemd_enabled == true
