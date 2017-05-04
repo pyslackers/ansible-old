@@ -19,9 +19,10 @@
     - restart fail2ban
 
 - name: Ensure auth.log exists
-  file:
-    path: /var/log/auth.log
-    state: touch
+  copy:
+    dest: /var/log/auth.log
+    force: no
+    content: ""
 
 - name: Start fail2ban
   service:
