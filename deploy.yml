@@ -5,5 +5,6 @@
     - role: setup-server
       tags: setup-server
     - role: python
+      tags: python
     - role: sirbot
       tags: sirbot

@@ -1,0 +1,16 @@
+language: python
+
+python:
+  - "3.5"
+
+before_install:
+  - sudo apt-get update -qq
+
+install:
+  - pip install ansible
+
+script:
+  - ansible-playbook -i environments/test_inventory prepare_ubuntu16.04.yml
+  - ansible-playbook -i environments/test_inventory test.yml --syntax-check
+  - "ansible-playbook -i environments/test_inventory test.yml -vvv --sudo"
+  - "ansible-playbook -i environments/test_inventory test.yml --sudo | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)"

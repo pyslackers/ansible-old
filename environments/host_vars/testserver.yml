@@ -1,0 +1,5 @@
+---
+letsencrypt_run: false
+systemd_enabled: false
+ansible_connection: local
+travis_ci: true

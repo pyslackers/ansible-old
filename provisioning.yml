@@ -1,7 +1,0 @@
----
-
-- name: Setup the server
-  hosts: all
-  roles:
-    - role: setup-server
-      tags: setup-server

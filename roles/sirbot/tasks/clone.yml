@@ -6,7 +6,7 @@
   git:
     accept_hostkey: yes
     clone: yes
-    repo: https://gitlab.com/PythonDevCommunity/sir-bot-a-lot.git
+    repo: https://github.com/pyslackers/sir-bot-a-lot.git
     version: master
     dest: /home/sirbot/sir-bot-a-lot
     force: yes
@@ -22,7 +22,7 @@
     accept_hostkey: yes
     force: yes
     clone: yes
-    repo: https://gitlab.com/PythonDevCommunity/sirbot-plugin.git
+    repo: https://github.com/pyslackers/sirbot-plugins.git
     version: master
     dest: /home/sirbot/sirbot-plugin
   register: sirbot_clone_plugin
@@ -36,7 +36,7 @@
     accept_hostkey: yes
     force: yes
     clone: yes
-    repo: https://gitlab.com/PythonDevCommunity/sirbot-plugin-slack.git
+    repo: https://github.com/pyslackers/sirbot-slack.git
     version: master
     dest: /home/sirbot/sirbot-plugin-slack
   register: sirbot_clone_plugin_slack
@@ -50,7 +50,7 @@
     accept_hostkey: yes
     force: yes
     clone: yes
-    repo: https://gitlab.com/PythonDevCommunity/sirbot-plugin-pythondev.git
+    repo: https://github.com/pyslackers/sirbot-pythondev.git
     version: master
     dest: /home/sirbot/sirbot-plugin-pythondev
   register: sirbot_clone_plugin_pythondev
