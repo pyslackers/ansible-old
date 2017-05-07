@@ -1,8 +1,2 @@
 [sirbot]
 pythondev-01
-
-[secrets:children]
-sirbot
-
-[test]
-testserver ansible_connection=local systemd_enabled=false

@@ -5,5 +5,5 @@
     - role: setup-server
       tags: setup-server
     - role: python
-  vars:
-    letsencrypt_run: false
+      tags: python
+

@@ -7,6 +7,7 @@
 - name: Add certbot PPA
   apt_repository:
     repo: 'ppa:certbot/certbot'
+  when: letsencrypt_run
 
 # May change due to https://github.com/ansible/ansible-modules-core/issues/3523
 - name: Install aptitude
