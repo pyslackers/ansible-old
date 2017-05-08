@@ -91,6 +91,7 @@
   command: /home/sirbot/.pyvenv/bin/sirbot -c /home/sirbot/sirbot-plugin-pythondev/sirbot.yml --update
   environment:
     SIRBOT_SLACK_BOT_TOKEN: '0'
+    SIRBOT_GITHUB_SECRET: 'a'
   when:
     - sirbot_db.stat.exists
     - sirbot_clone_core.changed or sirbot_clone_plugin.changed or sirbot_clone_plugin_slack.changed or sirbot_clone_plugin_pythondev.changed
