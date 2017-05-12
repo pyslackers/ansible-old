@@ -8,7 +8,7 @@ server {
 
 server {
     listen  443 ssl; ## listen for ipv4; this line is default and implied
-    server_name sirbot.ovv.wtf;
+    server_name {{ sirbot_domain }};
 
     access_log /var/log/nginx/sirbot_access.log;
     error_log /var/log/nginx/sirbot_error.log info;
