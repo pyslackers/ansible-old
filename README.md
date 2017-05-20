@@ -14,11 +14,11 @@ Interested in becoming a member? Get your invite here: http://pythondevelopers.h
 Install Python 2 on the server using the raw command
 
     $ ansible <host_pattern> -i <inventory> -m raw -a "apt-get install -y python-simplejson"
-    
+
 **Example:**
-    
+
     $ ansible sirbot -i <inventory> -m raw -a "apt-get install -y python-simplejson"
-    
+
 -OR-
 
 Run the `prepare_ubuntu16.04` playbook for the server
@@ -28,7 +28,7 @@ Run the `prepare_ubuntu16.04` playbook for the server
 ### Provisioning
 
 > The following is for securing your server. If you are deploying the app on a new server.
-    
+
     $ ansible-playbook -i <inventory> provisioning.yml
 
 ### Run the deployment for the specific app you want to deploy
@@ -42,6 +42,15 @@ Run the deployment.
 
     $ ansible-playbook -i <inventory> deploy.yml --tags <app>
 
+## Testing
+
+Tests are run via Travis CI's `.travis.yml`. Unit tests can be manually via docker with:
+
+`docker run -t -i -v ${PWD}:/data geerlingguy/docker-ubuntu1604-ansible /data/run_tests.sh``
+
+Ensure that you have placed the Ansible vault password into `.pass` beforehand.
+
+
 ## Configuration
 
 ### Provisioning
@@ -49,7 +58,7 @@ Run the deployment.
 #### Required variables
 
 * `ssh_keys`: Path to your ssh authorized_keys file
-    
+
 ### Sirbot
 
 To run this playbook the host must be in the `sirbot` group.
@@ -77,22 +86,18 @@ To run this playbook the host must be in the `sirbot` group.
 2. Install the `make-deb` python module
 
         $ pip install make-deb
-    
+
 3. Configure the package
 
         $ make-deb
-    
+
 4. Build the package
 
     > Make sure the package is being build with minimum a python3.5 executable
 
-        $ export VIRTUALENV_PYTHON=/usr/bin/python3.5 
+        $ export VIRTUALENV_PYTHON=/usr/bin/python3.5
         $ dpkg-buildpackage -us -uc
-        
+
 5. (Optional) Install the package
 
         $ dpkg -i sirbot_<version>_amd64.deb
-    
-    
-    
-

@@ -3,3 +3,10 @@ letsencrypt_run: false
 systemd_enabled: false
 ansible_connection: local
 travis_ci: true
+email: pythondev.slack@gmail.com
+sirbot_domain: sirbot.pyslackers.com
+pythondev_domain: pyslackers.com
+SIRBOT_SLACK_TOKEN: ""
+SIRBOT_SLACK_BOT_TOKEN: ""
+SIRBOT_SLACK_VERIFICATION_TOKEN: ""
+SIRBOT_GITHUB_SECRET: ""

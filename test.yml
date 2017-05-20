@@ -3,7 +3,7 @@
   hosts: testserver
   roles:
     - role: setup-server
-      tags: setup-server
     - role: python
-      tags: python
+    - role: sirbot
+    - role: pythondev-site
 

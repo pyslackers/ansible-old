@@ -6,13 +6,16 @@
     daemon_reload: yes
   notify:
     - Restart sirbot
+  when: systemd_enabled == true
 
 - name: Restart sirbot
   service:
     name: sirbot.service
     state: restarted
+  when: systemd_enabled == true
 
 - name: Restart nginx
   service:
     name: nginx.service
     state: restarted
+  when: systemd_enabled == true

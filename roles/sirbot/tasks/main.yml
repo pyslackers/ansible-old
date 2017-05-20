@@ -79,6 +79,7 @@
   systemd:
     name: sirbot.service
     enabled: yes
+  when: systemd_enabled == true
 
 - name: Database exist
   stat:
