@@ -1,0 +1,14 @@
+# {{ ansible_managed }}
+
+[Unit]
+Description=PythonDev Site
+
+[Service]
+ExecStart=/home/pythondev/.pyvenv/bin/gunicorn appauto:app -w 4 --log-file - --bind 0.0.0.0:{{ pythondev_port }} --chdir /home/pythondev/pythondev-site
+Type=simple
+User=pythondev
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target

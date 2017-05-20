@@ -1,0 +1,68 @@
+---
+
+- name: Install necessary packages
+  become: true
+  apt:
+    name: '{{ item }}'
+    state: latest
+  with_items:
+    - certbot
+    - libpq-dev
+
+- name: Create pythondev user
+  become: true
+  user:
+    name: pythondev
+    shell: /bin/bash
+
+- name: Create /home/pythondev
+  become: true
+  become_user: pythondev
+  file:
+    path: /home/pythondev
+    state: directory
+    mode: 0755
+
+- name: Create virtualenv
+  become: true
+  become_user: pythondev
+  pip:
+    name: pip
+    version: 9.0.1
+    virtualenv: /home/pythondev/.pyvenv
+    virtualenv_command: "/usr/local/pythonz/pythons/CPython-{{ python_version }}/bin/pyvenv"
+
+- include: clone.yml
+
+- include: install.yml
+
+- name: Nginx
+  template:
+    dest: /etc/nginx/sites-available/pythondev-site
+    src: etc/nginx/sites-available/pythondev-site
+  notify: Restart nginx
+
+- name: Enable
+  file:
+    path: /etc/nginx/sites-enabled/pythondev-site
+    state: link
+    src: /etc/nginx/sites-available/pythondev-site
+  notify: Restart nginx
+
+- include: certificate.yml
+
+- name: Set pythondev in systemd
+  become: true
+  template:
+    src: etc/systemd/system/pythondev-site.service.j2
+    dest: /etc/systemd/system/pythondev-site.service
+  notify:
+    - Restart pythondev-site
+    - Reload systemd dameon
+
+- name: Start pythondev on boot
+  become: true
+  systemd:
+    name: pythondev-site.service
+    enabled: yes
+  when: systemd_enabled == true

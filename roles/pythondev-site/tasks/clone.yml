@@ -1,0 +1,16 @@
+---
+
+- name: Clone core repo
+  become: true
+  become_user: pythondev
+  git:
+    accept_hostkey: yes
+    clone: yes
+    repo: https://github.com/pyslackers/website.git
+    version: master
+    dest: /home/pythondev/pythondev-site
+    force: yes
+    remote: origin
+  register: core
+  notify:
+    - Restart pythondev-site
