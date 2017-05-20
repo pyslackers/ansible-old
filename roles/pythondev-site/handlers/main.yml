@@ -1,0 +1,21 @@
+---
+
+- name: Reload systemd dameon
+  systemd:
+    name: pythondev.service
+    daemon_reload: yes
+  notify:
+    - Restart pythondev
+  when: systemd_enabled == true
+
+- name: Restart pythondev
+  service:
+    name: pythondev.service
+    state: restarted
+  when: systemd_enabled == true
+
+- name: Restart nginx
+  service:
+    name: nginx.service
+    state: restarted
+  when: systemd_enabled == true
