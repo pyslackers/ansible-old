@@ -13,7 +13,7 @@
 
 - name: Generate certificate
   command: "/usr/bin/certbot certonly --standalone -d {{ pythondev_domain }} -m {{ email }} -n --agree-tos {{letsencrypt_args}}"
-  when: pythondev_certificate.stat.isdir is not defined and letsencrypt_enabled == true
+  when: pythondev_certificate.stat.isdir is not defined and letsencrypt_run == true
 
 - name: Start nginx
   service:

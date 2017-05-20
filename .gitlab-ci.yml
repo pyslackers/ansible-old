@@ -1,7 +1,0 @@
-image: geerlingguy/docker-ubuntu1604-ansible
-
-test:
-  script:
-  - apt update
-  - echo "${ANSIBLE_VAULT_PASSWORD}" > .pass
-  - ansible-playbook -i environments/inventory test.yml -vvv --vault-password-file=.pass

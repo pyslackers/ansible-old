@@ -9,7 +9,7 @@
   service:
     name: nginx.service
     state: stopped
-  when: sirbot_certificate.stat.isdir is not defined
+  when: sirbot_certificate.stat.isdir is not defined and systemd_enabled == true
 
 - name: Generate certificate
   command: "/usr/bin/certbot certonly --standalone -d {{ sirbot_domain }} -m {{ email }} -n --agree-tos"
@@ -19,4 +19,4 @@
   service:
     name: nginx.service
     state: started
-  when: sirbot_certificate.stat.isdir is not defined
+  when: sirbot_certificate.stat.isdir is not defined  and systemd_enabled == true

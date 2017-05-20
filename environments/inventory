@@ -1,2 +1,5 @@
 [sirbot]
 pythondev-01
+
+[test]
+testserver ansible_connection=local
