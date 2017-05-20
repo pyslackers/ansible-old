@@ -8,3 +8,5 @@
       tags: python
     - role: sirbot
       tags: sirbot
+    - role: pythondev-site
+      tags: pythondev-site
