@@ -1,0 +1,25 @@
+---
+- name: Install packages
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+    force: yes
+  with_items:
+    - ubuntu-keyring
+    - build-essential
+    - curl
+    - libicu-dev
+    - tzdata
+    - git
+    - zlib1g-dev
+    - libbz2-dev
+    - libreadline-dev
+    - libncurses5-dev
+    - libsqlite3-dev
+    - libgdbm-dev
+    - libdb-dev
+    - libexpat1-dev
+    - libpcap-dev
+    - liblzma-dev
+    - libpcre3-dev
+    - libssl-dev

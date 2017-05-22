@@ -1,5 +1,4 @@
 ---
-
 - name: Reload systemd dameon
   systemd:
     name: sirbot.service
@@ -10,9 +9,4 @@
 - name: Restart sirbot
   service:
     name: sirbot.service
-    state: restarted
-
-- name: Restart nginx
-  service:
-    name: nginx.service
     state: restarted

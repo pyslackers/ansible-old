@@ -1,6 +1,6 @@
 ---
-- name: Restart cron
+- name: Restart ssh
   service:
-    name: cron.service
+    name: ssh.service
     state: restarted
   when: systemd_enabled == true

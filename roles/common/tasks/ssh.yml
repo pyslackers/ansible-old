@@ -1,0 +1,16 @@
+- name: Set authorized keys
+  authorized_key:
+    key: "{{ item }}"
+  with_items:
+    - https://github.com/Ovvovy.keys
+    - https://github.com/mikefromit.keys
+    - https://github.com/seanson.keys
+    - https://github.com/mrasband.keys
+  when: "not travis_ci"
+
+- name: SSH configuration
+  template:
+    src: etc/ssh/sshd_config
+    dest: /etc/ssh/sshd_config
+  notify:
+    - Restart ssh

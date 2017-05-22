@@ -1,0 +1,43 @@
+---
+- name: Add certbot PPA
+  apt_repository:
+    repo: 'ppa:certbot/certbot'
+  when: letsencrypt_run
+
+- name: Certbot is installed
+  apt:
+    pkg: certbot
+    state: latest
+
+- name: Certificate are installed
+  stat:
+    path: "/etc/letsencrypt/live/{{ domain }}"
+  register: domain_certificate
+
+- name: Stop nginx
+  service:
+    name: nginx.service
+    state: stopped
+  when: domain_certificate.stat.isdir is not defined and systemd_enabled == true
+
+- name: Generate certificate
+  command: "/usr/bin/certbot certonly --standalone -d {{ domain }} -m {{ email }} -n --agree-tos"
+  when: domain_certificate.stat.isdir is not defined and letsencrypt_enabled == true
+
+- name: Start nginx
+  service:
+    name: nginx.service
+    state: started
+  when: domain_certificate.stat.isdir is not defined and systemd_enabled == true
+
+- name: Nginx
+  template:
+    src: etc/nginx/sites-available/site-available.j2
+    dest: /etc/nginx/sites-available/{{ domain }}
+
+- name: Enable
+  file:
+    state: link
+    src: /etc/nginx/sites-available/{{ domain }}
+    path: /etc/nginx/sites-enabled/{{ domain }}
+  notify: Restart nginx

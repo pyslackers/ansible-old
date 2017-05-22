@@ -1,5 +1,4 @@
 ---
-
 - name: Clone core repo
   become: true
   become_user: pythondev

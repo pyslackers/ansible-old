@@ -2,8 +2,5 @@
 - name: Run test scripts
   hosts: testserver
   roles:
-    - role: setup-server
-      tags: setup-server
+    - role: common
     - role: python
-      tags: python
-

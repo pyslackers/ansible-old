@@ -1,0 +1,6 @@
+---
+- dependencies:
+  - { role: common }
+  - { role: python }
+  - { role: nginx }
+  - { role: ssl, domain: {{ sirbot_domain }}, port: {{ sirbot_port }} }
