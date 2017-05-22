@@ -1,27 +1,16 @@
 ---
-
 - name: Install necessary packages
   become: true
   apt:
-    name: '{{ item }}'
+    name: libpq-dev
     state: latest
-  with_items:
-    - certbot
-    - libpq-dev
 
 - name: Create pythondev user
   become: true
   user:
     name: pythondev
     shell: /bin/bash
-
-- name: Create /home/pythondev
-  become: true
-  become_user: pythondev
-  file:
-    path: /home/pythondev
-    state: directory
-    mode: 0755
+    home: /home/pythondev
 
 - name: Create virtualenv
   become: true

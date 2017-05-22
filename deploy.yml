@@ -2,11 +2,7 @@
 - name: Configure and deploy pythondev apps
   hosts: sirbot
   roles:
-    - role: setup-server
-      tags: setup-server
+    - role: sysstat
     - role: python
-      tags: python
     - role: sirbot
-      tags: sirbot
     - role: pythondev-site
-      tags: pythondev-site

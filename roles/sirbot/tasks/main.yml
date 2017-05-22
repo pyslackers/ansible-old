@@ -1,5 +1,4 @@
 ---
-
 - name: Install necessary packages
   become: true
   apt:
@@ -7,7 +6,6 @@
     state: latest
   with_items:
     - git
-    - nginx
     - build-essential
     - zlib1g-dev
     - libbz2-dev
@@ -21,21 +19,13 @@
     - liblzma-dev
     - libpcre3-dev
     - libssl-dev
-    - certbot
 
 - name: Create sirbot user
   become: true
   user:
     name: sirbot
     shell: /bin/bash
-
-- name: Create /home/sirbot
-  become: true
-  become_user: sirbot
-  file:
-    path: /home/sirbot
-    state: directory
-    mode: 0755
+    home: /user/sirbot
 
 - name: Create virtualenv
   become: true
@@ -49,21 +39,6 @@
 - include: clone.yml
 
 - include: install.yml
-
-- name: Nginx
-  template:
-    dest: /etc/nginx/sites-available/sirbot
-    src: etc/nginx/sites-available/sirbot
-  notify: Restart nginx
-
-- name: Enable
-  file:
-    path: /etc/nginx/sites-enabled/sirbot
-    state: link
-    src: /etc/nginx/sites-available/sirbot
-  notify: Restart nginx
-
-- include: certificate.yml
 
 - name: Set sirbot in systemd
   become: true
