@@ -12,7 +12,7 @@
   when: pythondev_certificate.stat.isdir is not defined and systemd_enabled == true
 
 - name: Generate certificate
-  command: "/usr/bin/certbot certonly --standalone -d {{ pythondev_domain }} -m {{ email }} -n --agree-tos {{letsencrypt_args}}"
+  command: "/usr/bin/certbot certonly --standalone -d {{ pythondev_domain }} -m {{ email }} -n --agree-tos"
   when: pythondev_certificate.stat.isdir is not defined and letsencrypt_run == true
 
 - name: Start nginx

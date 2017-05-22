@@ -89,7 +89,7 @@
 - name: Update sirbot
   become: true
   become_user: sirbot
-  command: /home/sirbot/.pyvenv/bin/sirbot -c /home/sirbot/sirbot-plugin-pythondev/sirbot.yml --update
+  command: /home/sirbot/.pyvenv/bin/sirbot -c /home/sirbot/sirbot-pythondev/sirbot.yml --update
   environment:
     SIRBOT_SLACK_BOT_TOKEN: '0'
     SIRBOT_GITHUB_SECRET: 'a'

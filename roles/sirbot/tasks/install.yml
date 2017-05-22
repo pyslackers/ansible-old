@@ -14,7 +14,7 @@
   become: true
   become_user: sirbot
   pip:
-    name: /home/sirbot/sirbot-plugin/
+    name: /home/sirbot/sirbot-plugins/
     executable: /home/sirbot/.pyvenv/bin/pip
     state: forcereinstall
   when: sirbot_clone_plugin.changed
@@ -25,7 +25,7 @@
   become: true
   become_user: sirbot
   pip:
-    name: /home/sirbot/sirbot-plugin-slack/
+    name: /home/sirbot/sirbot-slack/
     executable: /home/sirbot/.pyvenv/bin/pip
     state: forcereinstall
   when: sirbot_clone_plugin_slack.changed
@@ -36,7 +36,7 @@
   become: true
   become_user: sirbot
   pip:
-    name: /home/sirbot/sirbot-plugin-pythondev/
+    name: /home/sirbot/sirbot-pythondev/
     executable: /home/sirbot/.pyvenv/bin/pip
     state: forcereinstall
   when: sirbot_clone_plugin_pythondev.changed

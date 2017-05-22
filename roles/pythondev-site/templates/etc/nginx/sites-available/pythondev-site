@@ -10,8 +10,8 @@ server {
     listen  443 ssl; ## listen for ipv4; this line is default and implied
     server_name {{ pythondev_domain }};
 
-    access_log /var/log/nginx/sirbot_access.log;
-    error_log /var/log/nginx/sirbot_error.log info;
+    access_log /var/log/nginx/pythondev-site.log;
+    error_log /var/log/nginx/pytondev-site.log info;
 
     ssl_certificate /etc/letsencrypt/live/{{ pythondev_domain }}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/{{ pythondev_domain }}/privkey.pem;

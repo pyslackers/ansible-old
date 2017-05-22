@@ -24,7 +24,7 @@
     clone: yes
     repo: https://github.com/pyslackers/sirbot-plugins.git
     version: master
-    dest: /home/sirbot/sirbot-plugin
+    dest: /home/sirbot/sirbot-plugins
   register: sirbot_clone_plugin
   notify:
     - Restart sirbot
@@ -38,7 +38,7 @@
     clone: yes
     repo: https://github.com/pyslackers/sirbot-slack.git
     version: master
-    dest: /home/sirbot/sirbot-plugin-slack
+    dest: /home/sirbot/sirbot-slack
   register: sirbot_clone_plugin_slack
   notify:
     - Restart sirbot
@@ -52,7 +52,7 @@
     clone: yes
     repo: https://github.com/pyslackers/sirbot-pythondev.git
     version: master
-    dest: /home/sirbot/sirbot-plugin-pythondev
+    dest: /home/sirbot/sirbot-pythondev
   register: sirbot_clone_plugin_pythondev
   notify:
     - Restart sirbot
