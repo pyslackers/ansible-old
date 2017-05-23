@@ -2,7 +2,7 @@
 
 - name: Reload systemd dameon
   systemd:
-    name: pythondev.service
+    name: pythondev-site.service
     daemon_reload: yes
   notify:
     - Restart pythondev
@@ -10,7 +10,7 @@
 
 - name: Restart pythondev-site
   service:
-    name: pythondev.service
+    name: pythondev-site.service
     state: restarted
   when: systemd_enabled == true
 
