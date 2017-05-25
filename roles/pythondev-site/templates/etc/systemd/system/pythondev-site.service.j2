@@ -10,6 +10,8 @@ User=pythondev
 Restart=always
 RestartSec=1
 Environment=PY_ENV=prod
+Environment=SLACK_API_TOKEN={{ SLACK_ADMIN_API_TOKEN }}
+Environment=SLACK_JOIN_CHANNELS={{ SLACK_INVITE_DEFAULT_CHANNELS }}
 
 [Install]
 WantedBy=multi-user.target
