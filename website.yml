@@ -1,0 +1,37 @@
+---
+- name: deploy pyslackers website
+  hosts: all
+  vars:
+    domain: pyslackers.com
+    python_version: 3.6.1
+    repo: https://github.com/pyslackers/website.git
+    service_name: pythondev-site
+    site_port: 3000
+    ssl: true
+    username: pythondev
+    version: master
+
+  roles:
+    - common
+    - user
+    - nginx
+    - pythonapp
+
+    - role: system_service
+      exec_start: "/home/{{ username }}/.pyvenv/bin/gunicorn pyslackers.__main__:app --workers 4 --log-syslog --log-syslog-prefix WEBSITE --log-level debug --bind 127.0.0.1:{{ site_port }}"
+      service_environment:
+        - "FLASK_APP=pyslackers/__main__.py"
+        - "PY_ENV=prod"
+        - "SLACK_API_TOKEN={{ SLACK_ADMIN_API_TOKEN }}"
+        - "SLACK_JOIN_CHANNELS={{ SLACK_INVITE_DEFAULT_CHANNELS }}"
+        - "SECRET_KEY={{ SECRET_KEY }}"
+
+  environment:
+    FLASK_APP: pyslackers/__main__.py
+    PY_ENV: prod
+
+  tasks:
+    - name: migrate application database
+      command: "/home/{{ username }}/.pyvenv/bin/flask db upgrade"
+      args:
+        chdir: "/home/{{ username }}/{{ service_name }}"

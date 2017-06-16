@@ -1,0 +1,16 @@
+---
+- name: make the domain {{ domain }} available
+  template:
+    src: etc/nginx/sites-available/site-available.j2
+    dest: "/etc/nginx/sites-available/{{ domain }}"
+
+- name: enable the domain {{ domain }}
+  file:
+    src: "/etc/nginx/sites-available/{{ domain }}"
+    dest: "/etc/nginx/sites-enabled/{{ domain }}"
+    state: link
+
+- name: reload nginx
+  service:
+    name: nginx.service
+    state: reloaded

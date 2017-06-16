@@ -1,4 +1,23 @@
 ---
+- name: install python source dependencies
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+    force: yes
+  with_items:
+    - build-essential
+    - zlib1g-dev
+    - libbz2-dev
+    - libssl-dev
+    - libreadline-dev
+    - libncurses5-dev
+    - libsqlite3-dev
+    - libgdbm-dev
+    - libdb-dev
+    - libexpat-dev
+    - libpcap-dev
+    - liblzma-dev
+    - libpcre3-dev
 
 - name: Download Pythonz
   git:
