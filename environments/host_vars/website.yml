@@ -1,0 +1,7 @@
+---
+ansible_ssh_host: 45.55.169.185
+ansible_ssh_port: 22
+ansible_ssh_user: root
+email: pythondev.slack@gmail.com
+systemd_enabled: true
+travis_ci: false

@@ -1,8 +1,11 @@
+[all:vars]
+ansible_python_interpreter = /usr/bin/python3
+
 [sirbot]
 pythondev-01
 
-[pyslackers]
-pythondev-01
+[pyslackers-website]
+website
 
 [test]
 testserver ansible_connection=local

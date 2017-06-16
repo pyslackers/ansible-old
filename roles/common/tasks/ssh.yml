@@ -1,0 +1,27 @@
+- name: Create /root/.ssh directory
+  file:
+    path: /root/.ssh
+    state: directory
+
+- name: Create /etc/ssh directory
+  file:
+    path: /etc/ssh
+    state: directory
+
+- name: Set authorized keys
+  authorized_key:
+    key: "https://github.com/{{ item }}.keys"
+    user: root
+  when: "not travis_ci"
+  with_items:
+    - ovv
+    - mrasband
+    - mikefromit
+    - seanson
+
+- name: Ssh configuration
+  template:
+    src: etc/ssh/sshd_config
+    dest: /etc/ssh/sshd_config
+  notify:
+    - Restart ssh

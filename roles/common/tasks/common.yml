@@ -1,0 +1,24 @@
+---
+- name: Set hostname
+  hostname:
+    name: "{{ hostname_override }}"
+  when: hostname_override is defined
+
+# May change due to https://github.com/ansible/ansible-modules-core/issues/3523
+- name: Install aptitude
+  apt:
+    pkg: aptitude
+
+- name: Set timezone to UTC
+  timezone:
+    name: Etc/UTC
+  notify:
+    - Restart cron
+
+# Not sure if needed
+- name: Set localtime to UTC
+  file:
+    src: /usr/share/zoneinfo/Etc/UTC
+    dest: /etc/localtime
+  notify:
+    - Restart cron

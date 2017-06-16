@@ -7,29 +7,17 @@ Interested in becoming a member? Get your invite here: http://pythondevelopers.h
 
 ## Get Started
 
-### Prepare Ubuntu Server 16.04
+Ensure you have a `.pass` file in the root of your project, populated with the ansible password.
 
-> The following is for deploying to Ubuntu Server 16.04 which does not have Python 2 installed
+### Configure/Deploy PySlackers website
 
-Install Python 2 on the server using the raw command
+    $ ansible-playbook website.yml
 
-    $ ansible <host_pattern> -i <inventory> -m raw -a "apt-get install -y python-simplejson"
+### Configure/Deploy SirBot
 
-**Example:**
+TODO!
 
-    $ ansible sirbot -i <inventory> -m raw -a "apt-get install -y python-simplejson"
-
--OR-
-
-Run the `prepare_ubuntu16.04` playbook for the server
-
-    $ ansible-playbook -i <inventory> prepare_ubuntu16.04.yml
-
-### Provisioning
-
-> The following is for securing your server. If you are deploying the app on a new server.
-
-    $ ansible-playbook -i <inventory> provisioning.yml
+    $ ansible-playbook sirbot.yml
 
 ### Run the deployment for the specific app you want to deploy
 
@@ -46,10 +34,9 @@ Run the deployment.
 
 Tests are run via Travis CI's `.travis.yml`. Unit tests can be manually via docker with:
 
-`docker run -t -i -v ${PWD}:/data geerlingguy/docker-ubuntu1604-ansible /data/run_tests.sh``
+    $ docker run -t -i -v ${PWD}:/data geerlingguy/docker-ubuntu1604-ansible /data/run_tests.sh
 
 Ensure that you have placed the Ansible vault password into `.pass` beforehand.
-
 
 ## Configuration
 

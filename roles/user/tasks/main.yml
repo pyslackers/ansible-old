@@ -1,0 +1,7 @@
+---
+- name: create new user
+  become: true
+  user:
+    name: "{{ username }}"
+    shell: /bin/bash
+    home: "/home/{{ username }}"
