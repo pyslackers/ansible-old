@@ -10,4 +10,7 @@
 - include: website.yml
   tags:
     - website
-  when: "'website' in group_names"
+
+- include: sirbot.yml
+  tags:
+    - sirbot

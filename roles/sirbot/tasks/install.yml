@@ -1,32 +1,32 @@
 ---
 - name: Install core
   become: true
-  become_user: sirbot
+  become_user: "{{ username }}"
   pip:
-    name: /home/sirbot/sir-bot-a-lot/
-    executable: /home/sirbot/.pyvenv/bin/pip
+    name: "/home/{{ username }}/sir-bot-a-lot/"
+    executable: "/home/{{ username }}/.pyvenv/bin/pip"
     state: forcereinstall
   when: sirbot_clone_core.changed
   notify:
     - Restart sirbot
 
-- name: Install plugin
+- name: Install plugins
   become: true
-  become_user: sirbot
+  become_user: "{{ username }}"
   pip:
-    name: /home/sirbot/sirbot-plugins/
-    executable: /home/sirbot/.pyvenv/bin/pip
+    name: "/home/{{ username }}/sirbot-plugins/"
+    executable: "/home/{{ username }}/.pyvenv/bin/pip"
     state: forcereinstall
-  when: sirbot_clone_plugin.changed
+  when: sirbot_clone_plugins.changed
   notify:
     - Restart sirbot
 
 - name: Install plugin-slack
   become: true
-  become_user: sirbot
+  become_user: "{{ username }}"
   pip:
-    name: /home/sirbot/sirbot-slack/
-    executable: /home/sirbot/.pyvenv/bin/pip
+    name: "/home/{{ username }}/sirbot-slack/"
+    executable: "/home/{{ username }}/.pyvenv/bin/pip"
     state: forcereinstall
   when: sirbot_clone_plugin_slack.changed
   notify:
@@ -34,10 +34,10 @@
 
 - name: Install plugin-pythondev
   become: true
-  become_user: sirbot
+  become_user: "{{ username }}"
   pip:
-    name: /home/sirbot/sirbot-pythondev/
-    executable: /home/sirbot/.pyvenv/bin/pip
+    name: "/home/{{ username }}/sirbot-pythondev/"
+    executable: "/home/{{ username }}/.pyvenv/bin/pip"
     state: forcereinstall
   when: sirbot_clone_plugin_pythondev.changed
   notify:

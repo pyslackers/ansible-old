@@ -1,4 +1,7 @@
 ---
+apt_cache_valid_time: 86000
 python_version: 3.6.1
 systemd_enabled: true
 ssl: true
+
+travis_ci: false

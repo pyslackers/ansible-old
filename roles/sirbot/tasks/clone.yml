@@ -2,57 +2,57 @@
 
 - name: Clone core repo
   become: true
-  become_user: sirbot
+  become_user: "{{ username }}"
   git:
     accept_hostkey: yes
     clone: yes
-    repo: https://github.com/pyslackers/sir-bot-a-lot.git
-    version: master
-    dest: /home/sirbot/sir-bot-a-lot
+    repo: "{{ sirbot_core_repo }}"
+    version: "{{ sirbot_core_version }}"
+    dest: "/home/{{ username }}/sir-bot-a-lot"
     force: yes
     remote: origin
   register: sirbot_clone_core
   notify:
     - Restart sirbot
 
-- name: Clone plugin repo
+- name: Clone plugins repo
   become: true
-  become_user: sirbot
+  become_user: "{{ username }}"
   git:
     accept_hostkey: yes
     force: yes
     clone: yes
-    repo: https://github.com/pyslackers/sirbot-plugins.git
-    version: master
-    dest: /home/sirbot/sirbot-plugins
-  register: sirbot_clone_plugin
+    repo: "{{ sirbot_plugins_repo }}"
+    version: "{{ sirbot_plugins_version }}"
+    dest: "/home/{{ username }}/sirbot-plugins"
+  register: sirbot_clone_plugins
   notify:
     - Restart sirbot
 
 - name: Clone plugin-slack repo
   become: true
-  become_user: sirbot
+  become_user: "{{ username }}"
   git:
     accept_hostkey: yes
     force: yes
     clone: yes
-    repo: https://github.com/pyslackers/sirbot-slack.git
-    version: master
-    dest: /home/sirbot/sirbot-slack
+    repo: "{{ sirbot_slack_repo }}"
+    version: "{{ sirbot_slack_version }}"
+    dest: "/home/{{ username }}/sirbot-slack"
   register: sirbot_clone_plugin_slack
   notify:
     - Restart sirbot
 
 - name: Clone plugin-pythondev repo
   become: true
-  become_user: sirbot
+  become_user: "{{ username }}"
   git:
     accept_hostkey: yes
     force: yes
     clone: yes
-    repo: https://github.com/pyslackers/sirbot-pythondev.git
-    version: master
-    dest: /home/sirbot/sirbot-pythondev
+    repo: "{{ sirbot_pythondev_repo }}"
+    version: "{{ sirbot_pythondev_version }}"
+    dest: "/home/{{ username }}/sirbot-pythondev"
   register: sirbot_clone_plugin_pythondev
   notify:
     - Restart sirbot

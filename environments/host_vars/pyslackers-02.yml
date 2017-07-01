@@ -10,4 +10,7 @@ website_port: 3000
 website_user: website
 website_version: master
 
+sirbot_user: sirbot
+sirbot_port: 8080
 sirbot_domain: "sirbot.{{ base_domain }}"
+sirbot_config: /home/sirbot/sirbot-pythondev/sirbot.yml
