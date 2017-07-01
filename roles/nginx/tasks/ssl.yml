@@ -25,21 +25,11 @@
     state: stopped
   when: not fullchain.stat.exists
 
-
-- name: "generate staging ssl certificates for {{ domain }}"
-  command: "certbot certonly --standalone --email {{ email }}
-       --agree-tos -n -d {{ domain }},www.{{ domain }} --staging"
-  when:
-    - not fullchain.stat.exists
-    - ssl == 'staging'
-  register: ssl_staging
-
 - name: "generate ssl certificates for {{ domain }}"
   command: "certbot certonly --standalone --email {{ email }}
-       --agree-tos -n -d {{ domain }},www.{{ domain }}"
+       --agree-tos -n -d {{ domain }},www.{{ domain }} {% if ssl_staging %} --staging {% endif %}"
   when:
     - not fullchain.stat.exists
-    - ssl != 'staging'
 
 - name: create a cron job to autorenew all ssl certificates
   cron:

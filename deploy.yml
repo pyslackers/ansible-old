@@ -5,9 +5,8 @@
   roles:
     - common
   tags:
-    - commong
+    - common
 
 - include: website.yml
   tags:
     - website
-  when: "'website' in group_names"

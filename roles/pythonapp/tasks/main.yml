@@ -27,4 +27,3 @@
   pip:
     requirements: "/home/{{ username }}/{{ service_name }}/requirements.txt"
     executable: "/home/{{ username }}/.pyvenv/bin/pip"
-  when: clone.changed

@@ -20,7 +20,7 @@
     - nginx
     - pythonapp
     - role: system_service
-      when: systemd_enabled == true or systemd_enabled == 'staging'
+      when: systemd_enabled
 
   environment:
     FLASK_APP: pyslackers/__main__.py

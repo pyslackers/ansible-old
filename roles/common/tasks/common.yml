@@ -9,6 +9,8 @@
   apt:
     pkg: aptitude
     state: latest
+    update_cache: true
+    cache_valid_time: "{{ apt_cache_valid_time }}"
 
 - name: Set timezone to UTC
   timezone:
