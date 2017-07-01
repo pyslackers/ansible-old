@@ -20,6 +20,7 @@
     force: yes
     remote: origin
   register: clone
+  notify: Restart service
 
 - name: Install dependencies
   become: true

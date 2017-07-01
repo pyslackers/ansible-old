@@ -1,6 +1,6 @@
 ---
 
-- name: Restart sirbot
+- name: Restart service
   systemd:
     name: "{{ service_name }}.service"
     state: restarted
