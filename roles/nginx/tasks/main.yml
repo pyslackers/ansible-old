@@ -14,6 +14,6 @@
     - enable ufw
 
 - include: ssl.yml
-  when: ssl == true or ssl == 'staging'
+  when: ssl
 
 - include: http.yml
