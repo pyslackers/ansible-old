@@ -1,37 +1,34 @@
 ---
 - name: deploy pyslackers website
-  hosts: all
+  hosts: website
   vars:
-    domain: pyslackers.com
-    python_version: 3.6.1
+    domain: "{{ website_domain }}"
     repo: https://github.com/pyslackers/website.git
-    service_name: pythondev-site
-    site_port: 3000
-    ssl: true
-    username: pythondev
-    version: master
-
+    service_name: pyslackers-website
+    site_port: "{{ website_port }}"
+    username: "{{ website_user }}"
+    version: "{{ website_version }}"
+    exec_start: "/home/{{ username }}/.pyvenv/bin/gunicorn pyslackers.__main__:app --workers 4 --log-syslog --log-syslog-prefix WEBSITE --log-level debug --bind 127.0.0.1:{{ site_port }}"
+    service_environment:
+      - "FLASK_APP=pyslackers/__main__.py"
+      - "PY_ENV=prod"
+      - "SLACK_API_TOKEN={{ SLACK_ADMIN_API_TOKEN }}"
+      - "SLACK_JOIN_CHANNELS={{ SLACK_INVITE_DEFAULT_CHANNELS }}"
+      - "SECRET_KEY={{ SECRET_KEY }}"
   roles:
-    - common
     - user
     - nginx
     - pythonapp
-
     - role: system_service
-      exec_start: "/home/{{ username }}/.pyvenv/bin/gunicorn pyslackers.__main__:app --workers 4 --log-syslog --log-syslog-prefix WEBSITE --log-level debug --bind 127.0.0.1:{{ site_port }}"
-      service_environment:
-        - "FLASK_APP=pyslackers/__main__.py"
-        - "PY_ENV=prod"
-        - "SLACK_API_TOKEN={{ SLACK_ADMIN_API_TOKEN }}"
-        - "SLACK_JOIN_CHANNELS={{ SLACK_INVITE_DEFAULT_CHANNELS }}"
-        - "SECRET_KEY={{ SECRET_KEY }}"
+      when: systemd_enabled
 
   environment:
     FLASK_APP: pyslackers/__main__.py
     PY_ENV: prod
 
-  tasks:
-    - name: migrate application database
-      command: "/home/{{ username }}/.pyvenv/bin/flask db upgrade"
-      args:
-        chdir: "/home/{{ username }}/{{ service_name }}"
+# Failing when PY_ENV is prod
+#  tasks:
+#    - name: migrate application database
+#      command: "/home/{{ username }}/.pyvenv/bin/flask db upgrade"
+#      args:
+#        chdir: "/home/{{ username }}/{{ service_name }}"

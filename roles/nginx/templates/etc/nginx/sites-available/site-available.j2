@@ -46,8 +46,8 @@ server {
 
 {% if ssl %}
 server {
-    access_log /var/log/nginx/access.log;
-    error_log /var/log/nginx/error.log;
+    access_log /var/log/nginx/{{domain}}_access.log;
+    error_log /var/log/nginx/{{domain}}_error.log;
     charset utf-8;
 
     listen 443 ssl http2;

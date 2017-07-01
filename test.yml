@@ -1,9 +1,0 @@
----
-- name: Run test scripts
-  hosts: testserver
-  roles:
-    - role: setup-server
-    - role: python
-    - role: sirbot
-    - role: pythondev-site
-

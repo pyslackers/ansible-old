@@ -3,7 +3,7 @@
   template:
     src: etc/systemd/system/service.j2
     dest: "/etc/systemd/system/{{ service_name }}.service"
-  when: systemd_enabled == true
+  notify: Restart service
 
 - name: reload daemon
   systemd:
@@ -15,4 +15,3 @@
   systemd:
     name: "{{ service_name }}.service"
     enabled: yes
-  when: systemd_enabled == true

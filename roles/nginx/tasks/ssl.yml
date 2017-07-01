@@ -1,7 +1,4 @@
 ---
-- name: add certbot ppa
-  apt_repository:
-    repo: ppa:certbot/certbot
 
 - name: install certbot
   apt:
@@ -17,7 +14,7 @@
 #   raw: openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 #   when: not dhparam.stat.exists
 
-- name: check if ssl certs for {{ domain }} are already generated
+- name: "check if ssl certs for {{ domain }} are already generated"
   stat:
     path: "/etc/letsencrypt/live/{{ domain }}/fullchain.pem"
   register: fullchain
@@ -28,10 +25,11 @@
     state: stopped
   when: not fullchain.stat.exists
 
-- name: generate ssl certificates for {{ domain }}
-  raw: certbot certonly --standalone --email {{ email }}
-       --agree-tos -n -d {{ domain }},www.{{ domain }}
-  when: not fullchain.stat.exists
+- name: "generate ssl certificates for {{ domain }}"
+  command: "certbot certonly --standalone --email {{ email }}
+       --agree-tos -n -d {{ domain }},www.{{ domain }} {% if ssl_staging %} --staging {% endif %}"
+  when:
+    - not fullchain.stat.exists
 
 - name: create a cron job to autorenew all ssl certificates
   cron:
