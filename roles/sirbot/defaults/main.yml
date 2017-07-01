@@ -1,3 +1,13 @@
 ---
 
-sirbot_port: 8080
+sirbot_core_repo: https://github.com/pyslackers/sir-bot-a-lot.git
+sirbot_core_version: master
+
+sirbot_plugins_repo: https://github.com/pyslackers/sirbot-plugins.git
+sirbot_plugins_version: master
+
+sirbot_slack_repo: https://github.com/pyslackers/sirbot-slack.git
+sirbot_slack_version: master
+
+sirbot_pythondev_repo: https://github.com/pyslackers/sirbot-pythondev.git
+sirbot_pythondev_version: master

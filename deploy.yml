@@ -10,3 +10,7 @@
 - include: website.yml
   tags:
     - website
+
+- include: sirbot.yml
+  tags:
+    - sirbot
