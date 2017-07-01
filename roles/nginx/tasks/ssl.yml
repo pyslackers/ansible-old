@@ -27,7 +27,7 @@
 
 - name: "generate ssl certificates for {{ domain }}"
   command: "certbot certonly --standalone --email {{ email }}
-       --agree-tos -n -d {{ domain }},www.{{ domain }} {% if ssl_staging %} --staging {% endif %}"
+       --agree-tos -n -d {{ domain }}{% if www %},www.{{ domain }} {% endif %}{% if ssl_staging %} --staging {% endif %}"
   when:
     - not fullchain.stat.exists
 

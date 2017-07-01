@@ -1,5 +1,5 @@
 ---
-ansible_ssh_host: 45.55.169.185
+ansible_ssh_host: 164.132.88.113
 ansible_ssh_port: 22
 ansible_ssh_user: root
 email: pythondev.slack@gmail.com
@@ -10,4 +10,7 @@ website_port: 3000
 website_user: website
 website_version: master
 
+sirbot_user: sirbot
+sirbot_port: 8080
+sirbot_config: /home/sirbot/sirbot-pythondev/sirbot.yml
 sirbot_domain: "sirbot.{{ base_domain }}"
