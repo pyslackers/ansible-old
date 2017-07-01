@@ -1,0 +1,13 @@
+---
+ansible_ssh_host: 91.121.217.103
+ansible_ssh_port: 22
+ansible_ssh_user: root
+email: pythondev.slack@gmail.com
+base_domain: pyslackers.ovv.wtf
+
+website_domain: "{{ base_domain }}"
+website_port: 3000
+website_user: website
+website_version: master
+
+sirbot_domain: "sirbot.{{ base_domain }}"

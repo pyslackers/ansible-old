@@ -8,6 +8,7 @@
 - name: Install aptitude
   apt:
     pkg: aptitude
+    state: latest
 
 - name: Set timezone to UTC
   timezone:
@@ -22,3 +23,19 @@
     dest: /etc/localtime
   notify:
     - Restart cron
+
+- name: Install base packages
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+  with_items:
+    - build-essential
+    - curl
+    - git
+    - vim
+    - ntp
+    - ntpdate
+    - htop
+    - bash-completion
+    - ufw
+    - sudo

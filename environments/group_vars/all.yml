@@ -1,5 +1,4 @@
 ---
-apt_cache_valid_time: 86400
 python_version: 3.6.1
-letsencrypt_run: true
 systemd_enabled: true
+ssl: true

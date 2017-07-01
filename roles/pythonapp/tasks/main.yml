@@ -1,5 +1,5 @@
 ---
-- name: create virtualenv
+- name: Create virtualenv
   become: true
   become_user: "{{ username }}"
   pip:
@@ -8,7 +8,7 @@
     virtualenv: "/home/{{ username }}/.pyvenv"
     virtualenv_command: "/usr/local/pythonz/pythons/CPython-{{ python_version }}/bin/virtualenv"
 
-- name: clone project
+- name: Clone project
   become: true
   become_user: "{{ username }}"
   git:
@@ -21,7 +21,7 @@
     remote: origin
   register: clone
 
-- name: install dependencies
+- name: Install dependencies
   become: true
   become_user: "{{ username }}"
   pip:

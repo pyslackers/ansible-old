@@ -3,14 +3,17 @@
   template:
     src: etc/nginx/sites-available/site-available.j2
     dest: "/etc/nginx/sites-available/{{ domain }}"
+  register: available_sites
 
 - name: enable the domain {{ domain }}
   file:
     src: "/etc/nginx/sites-available/{{ domain }}"
     dest: "/etc/nginx/sites-enabled/{{ domain }}"
     state: link
+  register: enabled_sites
 
 - name: reload nginx
   service:
     name: nginx.service
     state: reloaded
+  when: "enabled_sites.changed or available_sites.changed"
