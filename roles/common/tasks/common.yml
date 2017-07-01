@@ -15,6 +15,7 @@
 - name: Set timezone to UTC
   timezone:
     name: Etc/UTC
+  when: not travis_ci
   notify:
     - Restart cron
 

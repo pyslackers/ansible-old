@@ -1,0 +1,6 @@
+---
+ansible_connection: local
+
+ssl: false
+travis_ci: true
+systemd_enabled: false

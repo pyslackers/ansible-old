@@ -10,7 +10,7 @@ services:
 
 before_install:
   - echo "${ANSIBLE_VAULT_PASSWORD}" > .pass
-  - docker pull geerlingguy/docker-ubuntu1604-ansible
+  - docker pull geerlingguy/docker-debian9-ansible
 
 
 script:
