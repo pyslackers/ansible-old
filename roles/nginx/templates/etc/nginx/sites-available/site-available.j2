@@ -19,7 +19,7 @@ server {
 {% if ssl %}
         return 301 https://$host$request_uri;
 {% else %}
-        proxy_pass http://localhost:{{ site_port }};
+        proxy_pass http://127.0.0.1:{{ site_port }};
 
         # Enable websocket support with connection upgrades
         proxy_http_version 1.1;
@@ -73,7 +73,7 @@ server {
     add_header X-Content-Type-Options nosniff;
 
     location / {
-        proxy_pass http://localhost:{{ site_port }};
+        proxy_pass http://127.0.0.1:{{ site_port }};
 
         # Enable websocket support with connection upgrades
         proxy_http_version 1.1;
