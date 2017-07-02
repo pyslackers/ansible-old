@@ -9,7 +9,7 @@ server {
     listen 80;
     listen [::]:80;
 
-    server_name {{ domain }} www.{{ domain }};
+    server_name {{ domain }} {% if www %}www.{{ domain }}{% endif %};
 
     root /var/www/{{ domain }};
     index index.html;

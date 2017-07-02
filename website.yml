@@ -2,6 +2,7 @@
 - name: deploy pyslackers website
   hosts: website
   vars:
+    www: true
     domain: "{{ website_domain }}"
     repo: https://github.com/pyslackers/website.git
     service_name: pyslackers-website
