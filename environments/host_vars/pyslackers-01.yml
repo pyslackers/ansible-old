@@ -8,7 +8,7 @@ base_domain: pyslackers.com
 website_domain: "{{ base_domain }}"
 website_port: 3000
 website_user: website
-website_version: master
+website_version: prod
 
 sirbot_user: sirbot
 sirbot_port: 8080
