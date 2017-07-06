@@ -1,3 +1,5 @@
 ---
 exec_start_pre: ''
 work_dir: "/home/{{ username }}/{{ service_name }}"
+service_requires: ''
+service_wants: ''

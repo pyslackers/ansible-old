@@ -4,4 +4,5 @@
   systemd:
     name: "{{ service_name }}.service"
     state: restarted
+    daemon_reload: yes
   when: systemd_enabled == true
