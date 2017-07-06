@@ -1,0 +1,4 @@
+---
+
+postgres_locale: en_US.UTF-8
+postgres_roles: 'NOSUPERUSER,NOCREATEDB,NOCREATEROLE,NOLOGIN'
