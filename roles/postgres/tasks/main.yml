@@ -19,7 +19,7 @@
   postgresql_user:
     name: "{{ postgres_user }}"
     password: "{{ postgres_pass }}"
-    role_attr_flags: "{{ postgres_roles }}"
+    role_attr_flags: "{{ postgres_roles | join(',') }}"
     state: present
 
 - name: generate locales
