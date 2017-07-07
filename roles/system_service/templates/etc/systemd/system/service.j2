@@ -2,8 +2,8 @@
 
 [Unit]
 Description={{ service_name }}
-{% if service_requires %}Requires={{ service_requires }}
-{% if service_wants %}Wants={{ service_wants }}
+{% if service_requires %}Requires={{ service_requires }}{% endif %}
+{% if service_wants %}Wants={{ service_wants }}{% endif %}
 
 [Service]
 {% if exec_start_pre %}ExecStartPre={{ exec_start_pre }}
