@@ -5,13 +5,9 @@
     dest: "/etc/systemd/system/{{ service_name }}.service"
   notify: Restart service
 
-- name: reload daemon
-  systemd:
-    name: "{{ service_name }}.service"
-    daemon_reload: yes
-  when: systemd_enabled == true
-
 - name: enable app service on boot
   systemd:
     name: "{{ service_name }}.service"
     enabled: yes
+    daemon_reload: yes
+  when: systemd_enabled == true
