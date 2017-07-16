@@ -1,8 +1,0 @@
-----
-
-- name: Update sirbot
-  become: true
-  become_user: "{{ username }}"
-  command: "/home/{{ username }}/.pyvenv/bin/sirbot -c {{ sirbot_config }} --update"
-  when:
-    - clone.changed

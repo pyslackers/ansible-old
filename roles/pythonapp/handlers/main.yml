@@ -1,5 +1,13 @@
 ---
 
+- name: Service post install
+  become: true
+  become_user: "{{ username }}"
+  command: "{{ post_install }}"
+  args:
+    chdir: "{{ work_dir }}"
+  when: post_install
+
 - name: Restart service
   systemd:
     name: "{{ service_name }}.service"
