@@ -1,21 +1,8 @@
----
-- name: Create virtualenv
-  become: true
-  become_user: "{{ username }}"
-  pip:
-    name: pip
-    version: 9.0.1
-    virtualenv: "/home/{{ username }}/.pyvenv"
-    virtualenv_command: "/usr/local/pythonz/pythons/CPython-{{ python_version }}/bin/virtualenv"
-  register: sirbot_env
-
-- include: clone.yml
-- include: install.yml
+----
 
 - name: Update sirbot
   become: true
   become_user: "{{ username }}"
   command: "/home/{{ username }}/.pyvenv/bin/sirbot -c {{ sirbot_config }} --update"
   when:
-    - sirbot_clone_core.changed or sirbot_clone_plugins.changed or sirbot_clone_plugin_slack.changed or sirbot_clone_plugin_pythondev.changed
-    - not sirbot_env.changed
+    - clone.changed

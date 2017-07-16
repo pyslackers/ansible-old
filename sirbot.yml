@@ -2,6 +2,8 @@
 - name: deploy sir-bot-a-lot
   hosts: sirbot
   vars:
+    repo: https://github.com/pyslackers/sirbot-pythondev.git
+    version: master
     username: "{{ sirbot_user }}"
     domains:
       - "{{ sirbot_domain }}"
