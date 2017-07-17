@@ -1,4 +1,3 @@
 ---
 ssl: false
-www: false
 static_dir: false

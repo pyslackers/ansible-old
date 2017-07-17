@@ -10,9 +10,9 @@
     name: certbot
     state: latest
 
-- name: "check if ssl certs for {{ domain }} are already generated"
+- name: "check if ssl certs for {{ domains | join(',') }} are already generated"
   stat:
-    path: "/etc/letsencrypt/live/{{ domain }}/fullchain.pem"
+    path: "/etc/letsencrypt/live/{{ domains | first }}/fullchain.pem"
   register: fullchain
 
 - name: stop nginx
@@ -21,9 +21,9 @@
     state: stopped
   when: not fullchain.stat.exists
 
-- name: "generate ssl certificates for {{ domain }}"
+- name: "generate ssl certificates for {{ domains | join(',') }}"
   command: "certbot certonly --standalone --email {{ email }}
-       --agree-tos -n -d {{ domain }}{% if www %},www.{{ domain }} {% endif %}{% if ssl_staging %} --staging {% endif %}"
+       --agree-tos -n -d {{ domains | join(',') }}{% if ssl_staging %} --staging{% endif %}"
   when: not fullchain.stat.exists
 
 - name: create a cron job to autorenew all ssl certificates
@@ -32,4 +32,4 @@
     minute: 1
     hour: 23
     weekday: 0
-    job: '/usr/bin/certbot renew --quiet --renew-hook "/usr/sbin/service nginx reload"'
+    job: '/usr/bin/certbot renew --quiet --pre-hook "systemctl stop nginx.service" --post-hook "systemctl start nginx.service"'
