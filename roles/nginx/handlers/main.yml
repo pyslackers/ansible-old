@@ -12,3 +12,9 @@
   service:
     name: nginx
     state: started
+
+- name: reload nginx
+  service:
+    name: nginx.service
+    state: reloaded
+  when: "enabled_sites.changed"
