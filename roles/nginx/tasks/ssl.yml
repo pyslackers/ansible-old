@@ -1,18 +1,12 @@
 ---
+- name: add certbot ppa
+  apt_repository:
+    repo: ppa:certbot/certbot
 
 - name: install certbot
   apt:
     name: certbot
     state: latest
-
-# - name: check if dh group already generated
-#   stat:
-#     path: /etc/ssl/certs/dhparam.pem
-#   register: dhparam
-
-# - name: generate dh group
-#   raw: openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
-#   when: not dhparam.stat.exists
 
 - name: "check if ssl certs for {{ domain }} are already generated"
   stat:
@@ -28,8 +22,7 @@
 - name: "generate ssl certificates for {{ domain }}"
   command: "certbot certonly --standalone --email {{ email }}
        --agree-tos -n -d {{ domain }}{% if www %},www.{{ domain }} {% endif %}{% if ssl_staging %} --staging {% endif %}"
-  when:
-    - not fullchain.stat.exists
+  when: not fullchain.stat.exists
 
 - name: create a cron job to autorenew all ssl certificates
   cron:
