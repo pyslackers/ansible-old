@@ -1,7 +1,9 @@
 ---
+# Note: Debian9 has certbot in the official PPAs
 - name: add certbot ppa
   apt_repository:
     repo: ppa:certbot/certbot
+  when: ansible_distribution == 'Ubuntu'
 
 - name: install certbot
   apt:
