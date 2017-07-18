@@ -2,4 +2,4 @@
 
 install_self: false
 work_dir: "/home/{{ username }}/{{ service_name }}"
-migration: ''
+post_install: ''
