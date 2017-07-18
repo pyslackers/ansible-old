@@ -3,7 +3,7 @@
   hosts: sirbot
   vars:
     repo: https://github.com/pyslackers/sirbot-pythondev.git
-    version: master
+    version: prod
     username: "{{ sirbot_user }}"
     domains:
       - "{{ sirbot_domain }}"
