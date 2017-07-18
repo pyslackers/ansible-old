@@ -20,7 +20,9 @@
     force: yes
     remote: origin
   register: clone
-  notify: Restart service
+  notify:
+    - Service post install
+    - Restart service
 
 - name: Install dependencies
   become: true
@@ -28,3 +30,12 @@
   pip:
     requirements: "/home/{{ username }}/{{ service_name }}/requirements.txt"
     executable: "/home/{{ username }}/.pyvenv/bin/pip"
+
+- name: Install self
+  become: true
+  become_user: "{{ username }}"
+  pip:
+    name: "file:///home/{{ username }}/{{ service_name }}"
+    executable: "/home/{{ username }}/.pyvenv/bin/pip"
+    state: forcereinstall
+  when: 'clone|changed and install_self|bool'

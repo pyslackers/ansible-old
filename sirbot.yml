@@ -2,6 +2,8 @@
 - name: deploy sir-bot-a-lot
   hosts: sirbot
   vars:
+    repo: https://github.com/pyslackers/sirbot-pythondev.git
+    version: master
     username: "{{ sirbot_user }}"
     domains:
       - "{{ sirbot_domain }}"
@@ -9,6 +11,7 @@
     site_port: "{{ sirbot_port }}"
     exec_start: "/home/{{ username }}/.pyvenv/bin/sirbot -c {{ sirbot_config }}"
     work_dir: "/home/{{ username }}/"
+    post_install: "/home/{{ username }}/.pyvenv/bin/sirbot -c {{ sirbot_config }} --update"
     service_environment:
       - "SIRBOT_SLACK_BOT_TOKEN={{ SIRBOT_SLACK_BOT_TOKEN }}"
       - "SIRBOT_SLACK_TOKEN={{ SIRBOT_SLACK_TOKEN }}"
