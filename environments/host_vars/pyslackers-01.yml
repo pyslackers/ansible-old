@@ -12,5 +12,5 @@ website_version: prod
 
 sirbot_user: sirbot
 sirbot_port: 8080
-sirbot_config: /home/sirbot/sirbot-pythondev/sirbot.yml
+sirbot_config: /home/sirbot/sirbot/sirbot.yml
 sirbot_domain: "sirbot.{{ base_domain }}"
