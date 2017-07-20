@@ -3,3 +3,5 @@
 .pass
 .env
 env
+
+roles/nginx/

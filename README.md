@@ -7,17 +7,24 @@ Interested in becoming a member? Get your invite here: http://pythondevelopers.h
 
 ## Get Started
 
-Ensure you have a `.pass` file in the root of your project, populated with the ansible password.
+1. Ensure you have a `.pass` file in the root of the repository, populated with the ansible password for the any variables your playbook depends on
+2. Download/install ansible-galaxy provided roles before you run any playbooks
+
+```bash
+$ ansible-galaxy install -r requirements.yml
+```
 
 ### Configure/Deploy PySlackers website
 
-    $ ansible-playbook website.yml
+```bash
+$ ansible-playbook website.yml
+```
 
 ### Configure/Deploy SirBot
 
-TODO!
-
-    $ ansible-playbook sirbot.yml
+```bash
+$ ansible-playbook sirbot.yml
+```
 
 ### Run the deployment for the specific app you want to deploy
 
@@ -28,13 +35,17 @@ TODO!
 
 Run the deployment.
 
-    $ ansible-playbook -i <inventory> deploy.yml --tags <app>
+```bash
+$ ansible-playbook -i <inventory> deploy.yml --tags <app>
+```
 
 ## Testing
 
 Tests are run via Travis CI's `.travis.yml`. Unit tests can be manually via docker with:
 
-    $ docker run -t -i -v ${PWD}:/data geerlingguy/docker-ubuntu1604-ansible /data/run_tests.sh
+```bash
+$ docker run -t -i -v ${PWD}:/data geerlingguy/docker-ubuntu1604-ansible /data/run_tests.sh
+```
 
 Ensure that you have placed the Ansible vault password into `.pass` beforehand.
 

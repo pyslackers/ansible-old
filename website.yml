@@ -2,9 +2,6 @@
 - name: deploy pyslackers website
   hosts: website
   vars:
-    domains:
-      - "{{ website_domain }}"
-      - "www.{{ website_domain }}"
     repo: https://github.com/pyslackers/website-old.git
     service_name: pyslackers-website
     site_port: "{{ website_port }}"
@@ -19,7 +16,14 @@
       - "SECRET_KEY={{ SECRET_KEY }}"
   roles:
     - user
-    - nginx
+    - role: nginx
+      sites:
+        website:
+          domains:
+            - www.pyslackers.com
+            - pyslackers.com
+          port: "{{ website_port }}"
+          ssl: true
     - pythonapp
     - role: system_service
       when: systemd_enabled
