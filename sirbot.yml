@@ -5,10 +5,7 @@
     repo: https://github.com/pyslackers/sirbot-pythondev.git
     version: prod
     username: "{{ sirbot_user }}"
-    domains:
-      - "{{ sirbot_domain }}"
     service_name: sirbot
-    site_port: "{{ sirbot_port }}"
     exec_start: "/home/{{ username }}/.pyvenv/bin/sirbot -c {{ sirbot_config }}"
     work_dir: "/home/{{ username }}/"
     post_install: "/home/{{ username }}/.pyvenv/bin/sirbot -c {{ sirbot_config }} --update"
@@ -19,7 +16,13 @@
       - "SIRBOT_GITHUB_SECRET={{ SIRBOT_GITHUB_SECRET }}"
   roles:
     - user
-    - nginx
+    - role: nginx
+      sites:
+        sirbot:
+          domains:
+            - "{{ sirbot_domain }}"
+          port: "{{ sirbot_port }}"
+          ssl: true
     - sirbot
     - role: system_service
       when: systemd_enabled == true
