@@ -6,7 +6,7 @@
   command: "{{ post_install }}"
   args:
     chdir: "{{ work_dir }}"
-  when: post_install
+  when: 'post_install != ""'
 
 - name: Restart service
   systemd:
